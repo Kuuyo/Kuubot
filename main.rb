@@ -1,0 +1,403 @@
+::RBNACL_LIBSODIUM_GEM_LIB_PATH = "C:/libsodium.dll"
+require 'discordrb'
+
+bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smOQ.XOLClWa4t2KLoY6KOXO1o-1ejqo', application_id: 309244843077533697, prefix: "!"
+
+=begin
+!baka
+!sit
+"Baka".casecmp("baka") == 0
+@mentions
+Limit !mh
+pat/pet
+Kuubot I love you
+
+
+
+require 'net/http'
+src = Net::HTTP.get('monsterhunter.wikia.com', '/wiki/Tetsucabra')
+then with that source find the og:image meta tag
+
+
+bot.message(containing: 'fuck') do |event|
+	content = event.message.content
+	index = content.index('fuck')
+	content.insert(index,'flamingo')
+	content.delete('fuck')
+	event.message.edit(content)
+end
+
+203191910246907904 PG ?
+
+223493025748353024 Taylor
+118044849030168577 Prim
+Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
+=end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Slaps Kuubot*"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond '; w;'
+		when user = 223493025748353024
+			event.respond '> w<'
+		when user = 118044849030168577
+			event.respond '*Dodges*'
+		else
+			event.respond '*Bites*'
+	end
+end
+
+bot.mention do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond 'Yes master ?'
+		when user = 223493025748353024
+			event.respond 'Yes dear ?'
+		when user = 118044849030168577
+			event.respond 'What ?'
+		else
+			event.respond '. . .'
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond '*Shields Kuuyo*'
+		when user = 223493025748353024
+			event.respond '*Shields Kanji*'
+		when user = 118044849030168577
+			event.respond '*Reluctantly stands in front of Prim*'
+		else
+			event.respond '*Bites*'
+	end
+end
+
+bot.message(with_text: Regexp.new(Regexp.escape("Boop"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond 'Gokigenyou Kuu-sama.'
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond '*> w<'
+		when user = 223493025748353024
+			event.respond '*> v<'
+		when user = 118044849030168577
+			event.respond '> w<'
+		else
+			event.respond '-  w-'
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("Kuubot sleep"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond 'Oyasumi goshujin.'
+			bot.stop
+		else
+			event.respond 'No.  *Slappu*'
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Slaps"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond event.message.content
+		when user = 223493025748353024
+			event.respond event.message.content
+		else
+			event.respond "*Slaps " + event.user.username + "*"
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Pets"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond event.message.content
+		when user = 223493025748353024
+			event.respond event.message.content
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Pats"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048 && event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
+			event.respond event.message.content
+		when user = 223493025748353024 && event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
+			event.respond event.message.content
+	end
+end
+
+
+emotes = [
+	';bigsmile;',
+	';bigsmilehah;',
+	';but;',
+	';cry;',
+	';dot;',
+	';eh;',
+	';evil;',
+	';evil2;',
+	';gj;',
+	';haha;',
+	';heart;',
+	';hi;',
+	';huff;',
+	';imokay;',
+	';lurk;',
+	';mad;',
+	';no;',
+	';nooo;',
+	';ohno;',
+	';ok;',
+	';pat;',
+	';point;',
+	';question;',
+	';seriously;',
+	';smile;',
+	';sad;',
+	';sorry;',
+	';sure;',
+	';ugh;',
+	';uuh;',
+	';v;',
+	';vheart;',
+	';wan;',
+	';what;',
+	';yay;',
+	';yes;',
+	';yum;',
+	';zzz;'
+]
+
+=begin
+bot.message(containing: emotes) do |event|
+	content = event.message.content
+	index = content.index(';')
+	emote = content[index+1..-1]
+	emote = emote.chop
+	user = event.user.username
+	contentReturn = content[0..index-1]
+	dir = 'D:/smileys/'+emote+'.png'
+	event.respond contentReturn
+	event.channel.send_file File.new(dir)
+end
+=end
+
+bot.message(containing: emotes) do |event|
+	content = event.message.content
+	index = content.index(';')
+	content.slice!(index)
+	index2 = content.index(';')
+	emote = content[index..index2-1]
+	dir = 'emotes/'+emote+'.png'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :emotes, description:"Lists emotes" do |event|
+	event.respond emotes.join(' | ')
+end
+=begin
+bot.member_update do |event|
+	user = event.user.nick
+	if user.include? 'Kuuyo'
+		event.user.nick = 'Imposter'
+	elsif user.include? 'kuuyo'
+		event.user.nick = 'Imposter'
+	elsif user.include? 'kuu'
+		event.user.nick = 'Imposter'
+	elsif user.include? 'Kuu'
+		event.user.nick = 'Imposter'
+	end
+end
+=end
+
+
+bot.command :slap, description:"Slaps" do |event|
+	#mention = event.message.mentions
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			inputStr = String.new('*Slaps ' + event.message.content + '*')
+			inputStr.slice! "!slap "
+			event.respond inputStr
+		when user = 223493025748353024
+			inputStr = String.new('*Slaps ' + event.message.content + '*')
+			inputStr.slice! "!slap "
+			event.respond inputStr
+		when user = 118044849030168577
+			event.respond 'No'
+		else
+			event.respond 'No.  *Slaps ' + event.user.username + '*'
+	end
+end
+
+bot.command :pet, description:"Free pets" do |event|
+	inputStr = String.new('*Pets ' + event.user.username + '*')
+	event.respond inputStr
+end
+
+=begin
+bot.command :user do |event|
+	event.respond event.user.id
+end
+=end
+
+bot.bucket :pictures, limit: 4, time_span: 86400, delay: 21600
+
+bot.command :pixiv, description:"Random image", bucket: :pictures, rate_limit_message: 'It is still %time% more seconds before I am allowed to do that.' do |event|
+	files = Dir["G:/Pictures/Pixiv/*.*"]
+	server = event.server.id
+	case server
+		when server = 203172685449134080
+			event.bot.send_file '203233799138574336',File.new(files.sample)
+		when server = 127586991243001857
+			event.bot.send_file '206232495857860608',File.new(files.sample)
+	end
+end
+
+bot.command :neko, description:"Random image", bucket: :pictures, rate_limit_message: 'It is still %time% more seconds before I am allowed to do that.' do |event|
+	files = Dir["G:/Pictures/Neko/*.*"]
+	server = event.server.id
+	case server
+		when server = 203172685449134080
+			event.bot.send_file '203233799138574336',File.new(files.sample)
+		when server = 127586991243001857
+			event.bot.send_file '206232495857860608',File.new(files.sample)
+	end
+end
+
+bot.command :kitsune, description:"Random image", bucket: :pictures, rate_limit_message: 'It is still %time% more seconds before I am allowed to do that.' do |event|
+	files = Dir["G:/Pictures/Kitsune/*.*"]
+	server = event.server.id
+	case server
+		when server = 203172685449134080
+			event.bot.send_file '203233799138574336',File.new(files.sample)
+		when server = 127586991243001857
+			event.bot.send_file '206232495857860608',File.new(files.sample)
+	end
+end
+
+bot.command :wiki, description:"gbf.wiki info on item/character", usage:"!wiki name \n Spaces for names are replaced by _" do |event,name|
+	event.respond "https://gbf.wiki/" + name
+end
+
+bot.command :data, description:"GBF Data Google Drive" do |event|
+	event.respond "https://docs.google.com/spreadsheets/d/1ygJ1YvgBVCPsuz02XH-6CkqA5lTXVFrwnlnomoa-Db0/edit#gid=1700307290"
+end
+
+bot.command :tier, description:"Reddit Tier List" do |event|
+	event.respond "https://docs.google.com/spreadsheets/d/1lo-r5oP5PVDBjDtN8SlJBpFCqCcYnZmvy1d0mIQsriw/htmlview?sle=true#"
+end
+
+bot.command :cal, description:"Motocal" do |event|
+	event.respond "http://hsimyu.net/motocal/"
+end
+
+bot.command :sheet, description:"HL Sheets" do |event|
+	event.respond "https://docs.google.com/spreadsheets/d/1lvyLV0L-FSSeLyhNvadkuU4cZKdcBTQnOCtGBXbiemA/edit?usp=sharing"
+end
+
+bot.command :crew, description:"Info on crew members" do |event|
+	event.respond "https://docs.google.com/spreadsheets/d/169C8SuBqj5RI1J5A8FLjua0zI595v8COJde90pZB0c0/edit?usp=sharing"
+end
+
+#non-existant roles, leaders, kuubot, lurker, solace, elements
+blockedRoles = [
+	'roles',
+	'leaders',
+	'Kuubot',
+	'lurker',
+	'solace',
+	'fire',
+	'earth',
+	'wind',
+	'water',
+	'light',
+	'dark'
+]
+
+availableRoles = [
+	'tia',
+	'levi',
+	'ygg',
+	'colo',
+	'chev',
+	'celeste',
+	'thbot'
+]
+
+bot.command :addrole, description:"Adds a role" do |event,arole|
+	roleToAdd = event.server.roles.find {|role| role.name == arole}
+	if roleToAdd == nil
+		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
+	elsif blockedRoles.include? arole
+		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
+	else
+		event.user.add_role(roleToAdd)
+		event.respond 'Role successfully added'
+	end
+end
+
+bot.command :remrole, description:"Removes a role" do |event,rrole|
+	roleToRemove = event.server.roles.find {|role| role.name == rrole}
+	if roleToRemove == nil
+		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
+	elsif blockedRoles.include? rrole
+		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
+	else
+		event.user.remove_role(roleToRemove)
+		event.respond 'Role successfully removed'
+	end
+end
+
+bot.command :toko do |event|
+	event.respond "https://cdn.discordapp.com/attachments/308345436760965120/309358140116434945/stamp61.png"
+end
+
+bot.command :truth do |event|
+	event.respond "https://cdn.discordapp.com/attachments/308368284472967168/309360697446498306/5879680.jpg"
+end
+
+
+=begin
+bot.command :mh, description:"Kiranico mhgen database", usage:"!mh [item/monster] spec \n Spaces for specification are replaced by -" do |event, type, spec|
+	case type
+		when "quest"
+			event.respond "http://mhgen.kiranico.com/" + type + "/" + spec
+		when "item"
+			event.respond "http://mhgen.kiranico.com/" + type + "/" + spec
+		when "monster"
+			event.respond "http://mhgen.kiranico.com/" + type + "/" + spec
+		else
+			event.respond "usage: !mh [item/monster] spec \n **Spaces for specification are replaced by -**"
+	end
+end
+
+bot.command :mhi, description:"Wiki image", usage:"!mhi spec" do |event, spec|
+	event.respond "http://monsterhunter.wikia.com/wiki/" + spec + "?file=MHGen-" + spec + "_Render_001.png"
+end
+
+bot.command :mhw, description:"Wiki", usage:"!mhw spec" do |event, spec|
+	event.respond "http://monsterhunter.wikia.com/wiki/MHGen:_" + spec
+end
+=end
+
+bot.command :dance, description:"Dance", usage:"!dance" do |event|
+	event.respond "No."
+end
+
+bot.run
