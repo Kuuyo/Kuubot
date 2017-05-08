@@ -6,31 +6,32 @@ bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smO
 =begin
 !baka
 !sit
-"Baka".casecmp("baka") == 0
 @mentions
-Limit !mh
 pat/pet
 Kuubot I love you
-
-
+poke
+clarify help
+gw screenshots
+limit returning messages
+!Luck
+chu
+!general
+!raid
 
 require 'net/http'
 src = Net::HTTP.get('monsterhunter.wikia.com', '/wiki/Tetsucabra')
 then with that source find the og:image meta tag
 
-
-bot.message(containing: 'fuck') do |event|
-	content = event.message.content
-	index = content.index('fuck')
-	content.insert(index,'flamingo')
-	content.delete('fuck')
-	event.message.edit(content)
-end
-
 203191910246907904 PG ?
+308345436760965120 Solace
 
 223493025748353024 Taylor
 118044849030168577 Prim
+170295607506894857 Toko
+196820353429798914 Ota
+99389921042644992 Eltnum
+185040240132620288 Wappo
+138634079972098048 Kuuyo
 Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
 =end
 
@@ -57,6 +58,14 @@ bot.mention do |event|
 			event.respond 'Yes dear ?'
 		when user = 118044849030168577
 			event.respond 'What ?'
+		when user = 170295607506894857
+			event.respond 'Toko-poop ?'
+		when user = 196820353429798914
+			event.respond 'Obachan ?'
+		when user = 99389921042644992
+			event.respond '*Kicks*'
+		when user = 185040240132620288
+			event.respond 'w a p p o'
 		else
 			event.respond '. . .'
 	end
@@ -93,8 +102,32 @@ bot.message(containing: Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNOR
 			event.respond '*> v<'
 		when user = 118044849030168577
 			event.respond '> w<'
+		when user = 196820353429798914
+			event.respond 'Obaa > w<'
 		else
 			event.respond '-  w-'
+	end
+end
+
+bot.message(containing: Regexp.new(Regexp.escape("*Pokes Kuubot*"), Regexp::IGNORECASE)) do |event|
+	user = event.user.id
+	case user
+		when user = 138634079972098048
+			event.respond 'Uwah. Yes Master ?'
+		when user = 223493025748353024
+			event.respond 'Aaah ! Yes dear ?'
+		when user = 118044849030168577
+			event.respond 'Prim what'
+		when user = 170295607506894857
+			event.respond 'Yes Toko-poop ?'
+		when user = 196820353429798914
+			event.respond 'Oof, Oba, yes ?'
+		when user = 99389921042644992
+			event.respond '*Kicks*'
+		when user = 185040240132620288
+			event.respond 'W a p p o want what'
+		else
+			event.respond '*Bites*'
 	end
 end
 
@@ -116,6 +149,12 @@ bot.message(containing: Regexp.new(Regexp.escape("*Slaps"), Regexp::IGNORECASE))
 			event.respond event.message.content
 		when user = 223493025748353024
 			event.respond event.message.content
+		when user = 170295607506894857
+			event.respond event.message.content
+		when user = 196820353429798914
+			event.respond event.message.content
+		when user = 185040240132620288
+			event.respond event.message.content
 		else
 			event.respond "*Slaps " + event.user.username + "*"
 	end
@@ -125,19 +164,27 @@ bot.message(containing: Regexp.new(Regexp.escape("*Pets"), Regexp::IGNORECASE)) 
 	user = event.user.id
 	case user
 		when user = 138634079972098048
-			event.respond event.message.content
+			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
 		when user = 223493025748353024
-			event.respond event.message.content
+			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
 	end
 end
 
 bot.message(containing: Regexp.new(Regexp.escape("*Pats"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
 	case user
-		when user = 138634079972098048 && event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
-			event.respond event.message.content
-		when user = 223493025748353024 && event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
-			event.respond event.message.content
+		when user = 138634079972098048
+			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
+		when user = 223493025748353024
+			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
 	end
 end
 
@@ -210,6 +257,7 @@ end
 bot.command :emotes, description:"Lists emotes" do |event|
 	event.respond emotes.join(' | ')
 end
+
 =begin
 bot.member_update do |event|
 	user = event.user.nick
@@ -240,6 +288,8 @@ bot.command :slap, description:"Slaps" do |event|
 			event.respond inputStr
 		when user = 118044849030168577
 			event.respond 'No'
+		when user = 99389921042644992
+			event.respond "*Kicks " + event.user.username + '*'
 		else
 			event.respond 'No.  *Slaps ' + event.user.username + '*'
 	end
@@ -250,11 +300,18 @@ bot.command :pet, description:"Free pets" do |event|
 	event.respond inputStr
 end
 
-=begin
-bot.command :user do |event|
-	event.respond event.user.id
+bot.command :poke description:"Pokes" usage:"!poke [target] (Target is optional)" do |event,target|
+	if target != nil
+		inputStr = String.new('*Pokes ' + event.message.content + '*')
+		inputStr.slice! "!poke "
+		event.respond inputStr
+	else
+		inputStr = String.new('*Pokes ' + event.user.username + '*')
+		event.respond inputStr
+	end
 end
-=end
+
+=begin
 
 bot.bucket :pictures, limit: 4, time_span: 86400, delay: 21600
 
@@ -291,6 +348,8 @@ bot.command :kitsune, description:"Random image", bucket: :pictures, rate_limit_
 	end
 end
 
+=end
+
 bot.command :wiki, description:"gbf.wiki info on item/character", usage:"!wiki name \n Spaces for names are replaced by _" do |event,name|
 	event.respond "https://gbf.wiki/" + name
 end
@@ -315,7 +374,11 @@ bot.command :crew, description:"Info on crew members" do |event|
 	event.respond "https://docs.google.com/spreadsheets/d/169C8SuBqj5RI1J5A8FLjua0zI595v8COJde90pZB0c0/edit?usp=sharing"
 end
 
-#non-existant roles, leaders, kuubot, lurker, solace, elements
+bot.command :raidfinder, description:"Raidfinder" do |event|
+	event.respond "http://gbf-raidfinder.aikats.us/"
+end
+
+
 blockedRoles = [
 	'roles',
 	'leaders',
@@ -370,6 +433,35 @@ end
 
 bot.command :truth do |event|
 	event.respond "https://cdn.discordapp.com/attachments/308368284472967168/309360697446498306/5879680.jpg"
+end
+
+bot.command :prim do |event|
+	dir = 'images/kongoudesu.jpg'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :banana do |event|
+	dir = 'images/Banana.png'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :wappobanana, usage:"Ask wappo how he uses his banana, not me" do |event|
+	dir = 'images/Banana.jpg'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :headslam do |event|
+	dir = 'images/headslam.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :gii do |event|
+	dir = 'images/gii.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :gl do |event|
+	event.respond "https://s-media-cache-ak0.pinimg.com/originals/2c/cd/b7/2ccdb76c98524f46f9711b0c780fbd5e.gif"
 end
 
 
