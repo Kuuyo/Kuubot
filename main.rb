@@ -300,7 +300,7 @@ bot.command :pet, description:"Free pets" do |event|
 	event.respond inputStr
 end
 
-bot.command :poke description:"Pokes" usage:"!poke [target] (Target is optional)" do |event,target|
+bot.command :poke, description:"Pokes", usage:"!poke [target] (Target is optional)" do |event,target|
 	if target != nil
 		inputStr = String.new('*Pokes ' + event.message.content + '*')
 		inputStr.slice! "!poke "
