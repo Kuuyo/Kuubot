@@ -1,4 +1,4 @@
-::RBNACL_LIBSODIUM_GEM_LIB_PATH = "C:/libsodium.dll"
+#::RBNACL_LIBSODIUM_GEM_LIB_PATH = "C:/libsodium.dll"
 require 'discordrb'
 
 bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smOQ.XOLClWa4t2KLoY6KOXO1o-1ejqo', application_id: 309244843077533697, prefix: "!"
