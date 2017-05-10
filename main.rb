@@ -13,7 +13,6 @@ poke
 clarify help
 gw screenshots
 limit returning messages
-!Luck
 chu
 !general
 !raid
@@ -31,6 +30,7 @@ then with that source find the og:image meta tag
 196820353429798914 Ota
 99389921042644992 Eltnum
 185040240132620288 Wappo
+173564428942442497 Tel
 138634079972098048 Kuuyo
 Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
 =end
@@ -66,6 +66,8 @@ bot.mention do |event|
 			event.respond '*Kicks*'
 		when user = 185040240132620288
 			event.respond 'w a p p o'
+		when user = 173564428942442497
+			event.respond 'Yes Tel ?'
 		else
 			event.respond '. . .'
 	end
@@ -378,6 +380,9 @@ bot.command :raidfinder, description:"Raidfinder" do |event|
 	event.respond "http://gbf-raidfinder.aikats.us/"
 end
 
+bot.command :slime, description:"Slime guide" do |event|
+	event.respond "https://docs.google.com/document/d/1Lww1CIvStyD6HPojicRYpqxNCxdup73CYZcp8Rpqhyc/edit"
+end
 
 blockedRoles = [
 	'roles',
@@ -400,7 +405,8 @@ availableRoles = [
 	'colo',
 	'chev',
 	'celeste',
-	'thbot'
+	'thbot',
+	'slime'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
@@ -427,43 +433,97 @@ bot.command :remrole, description:"Removes a role" do |event,rrole|
 	end
 end
 
-bot.command :toko do |event|
+bot.command :toko, description:"Lecia sticker", usage:"Don't 'use' Toko, Toko is nice and ready to help" do |event|
 	event.respond "https://cdn.discordapp.com/attachments/308345436760965120/309358140116434945/stamp61.png"
 end
 
-bot.command :truth do |event|
+bot.command :truth, description:"S H O C K I N G   T R U T H", usage:"When the truth is shocking" do |event|
 	event.respond "https://cdn.discordapp.com/attachments/308368284472967168/309360697446498306/5879680.jpg"
 end
 
-bot.command :prim do |event|
+bot.command :prim, description:"Kongoushrugh", usage:"When a regular shrugh isn't enough" do |event|
 	dir = 'images/kongoudesu.jpg'
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :banana do |event|
+bot.command :banana, description:"Banana", usage:"!Banana" do |event|
 	dir = 'images/Banana.png'
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :wappobanana, usage:"Ask wappo how he uses his banana, not me" do |event|
+bot.command :wappobanana, description:"wappo banana", usage:"Ask wappo how he uses his banana, not me" do |event|
 	dir = 'images/Banana.jpg'
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :headslam do |event|
+bot.command :lewd, description:"Lewd sign", usage:"When something is lewd but you approve" do |event|
+	dir = 'images/lewd.png'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :toot, description:"NO TOOTING", usage:"When you're sick and tired of someone's tooting" do |event|
+	dir = 'images/toot.png'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :welcome, description:"Welcome new people", usage:"Welcoming new people" do |event|
+	dir = 'images/welcome.jpg'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :headslam, description:"Slamming head", usage:"When you do a big oops" do |event|
 	dir = 'images/headslam.gif'
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :gii do |event|
+bot.command :gii, description:"Stare", usage:"When you feel the need to stare at someone" do |event|
 	dir = 'images/gii.gif'
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :gl do |event|
-	event.respond "https://s-media-cache-ak0.pinimg.com/originals/2c/cd/b7/2ccdb76c98524f46f9711b0c780fbd5e.gif"
+bot.command :gl, description:"Get chance and luck", usage:"When someone needs all the luck" do |event|
+	event.respond "images/gl.gif"
 end
 
+bot.command :sense, description:"Common sense?", usage:"When common sense gets lost somehow" do |event|
+	dir = 'images/common_sense.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :midori, description:"Midori rip on bed", usage:"Rip on bed" do |event|
+	dir = 'images/midori.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :omg, description:"Twinkle twinkle eyes", usage:"When something is just too amazing" do |event|
+	dir = 'images/omg.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :pyon, description:"pyon", usage:"!pyon" do |event|
+	dir = 'images/pyon.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :baka, description:"Slap slap slap", usage:"When someone is being a big baka pooper" do |event|
+	dir = 'images/baka.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :chu, description:"Miku chu", usage:"!chu" do |event|
+	dir = 'images/chu.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :heart, description:"Miku heart", usage:"!heart" do |event|
+	dir = 'images/heart.gif'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :miku, description:"b('-'", usage:"When you need to b('-' someone" do |event|
+	dir = 'images/miku.gif'
+	event.channel.send_file File.new(dir)
+end
 
 =begin
 bot.command :mh, description:"Kiranico mhgen database", usage:"!mh [item/monster] spec \n Spaces for specification are replaced by -" do |event, type, spec|
