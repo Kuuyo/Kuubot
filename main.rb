@@ -16,6 +16,7 @@ limit returning messages
 chu
 !general
 !raid
+!salt
 
 require 'net/http'
 src = Net::HTTP.get('monsterhunter.wikia.com', '/wiki/Tetsucabra')
@@ -377,11 +378,15 @@ bot.command :crew, description:"Info on crew members" do |event|
 end
 
 bot.command :raidfinder, description:"Raidfinder" do |event|
-	event.respond "http://gbf-raidfinder.aikats.us/"
+	event.respond "http://gbf-raidfinder.aikats.us/\nhttps://granblue-raidfinder.herokuapp.com/\nhttps://gbf-raidfinder.la-foret.me/"
 end
 
 bot.command :slime, description:"Slime guide" do |event|
 	event.respond "https://docs.google.com/document/d/1Lww1CIvStyD6HPojicRYpqxNCxdup73CYZcp8Rpqhyc/edit"
+end
+
+bot.command :masterdoc, description:"GBF Guides masterdoc" do |event|
+	event.respond "https://docs.google.com/document/d/1YviFj21q0V-JvZ671zWt3Ukl0lotJeQmIfQA6zwLN-M/edit"
 end
 
 blockedRoles = [
@@ -462,7 +467,7 @@ bot.command :lewd, description:"Lewd sign", usage:"When something is lewd but yo
 end
 
 bot.command :toot, description:"NO TOOTING", usage:"When you're sick and tired of someone's tooting" do |event|
-	dir = 'images/toot.jpg'
+	dir = 'images/toot.png'
 	event.channel.send_file File.new(dir)
 end
 
