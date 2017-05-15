@@ -476,6 +476,11 @@ bot.command :welcome, description:"Welcome new people", usage:"Welcoming new peo
 	event.channel.send_file File.new(dir)
 end
 
+bot.command :yuggu, description:"yuggu", usage:"!yuggu" do |event|
+	dir = 'images/yuggu.jpg'
+	event.channel.send_file File.new(dir)
+end
+
 bot.command :headslam, description:"Slamming head", usage:"When you do a big oops" do |event|
 	dir = 'images/headslam.gif'
 	event.channel.send_file File.new(dir)
