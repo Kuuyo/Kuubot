@@ -17,6 +17,7 @@ chu
 !general
 !raid
 !salt
+discord.gg/blobs
 
 require 'net/http'
 src = Net::HTTP.get('monsterhunter.wikia.com', '/wiki/Tetsucabra')
@@ -411,30 +412,31 @@ availableRoles = [
 	'chev',
 	'celeste',
 	'thbot',
-	'slime'
+	'slime',
+	'6man'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
 	roleToAdd = event.server.roles.find {|role| role.name == arole}
-	if roleToAdd == nil
-		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
-	elsif blockedRoles.include? arole
-		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
-	else
+	if availableRoles.include? arole
 		event.user.add_role(roleToAdd)
 		event.respond 'Role successfully added'
+	if blockedRoles.include? arole
+		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
+	else
+		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
 	end
 end
 
 bot.command :remrole, description:"Removes a role" do |event,rrole|
 	roleToRemove = event.server.roles.find {|role| role.name == rrole}
-	if roleToRemove == nil
-		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
+	if availableRoles.include? rrole
+		event.user.remove_role(roleToRemove)
+		event.respond 'Role successfully removed'
 	elsif blockedRoles.include? rrole
 		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
 	else
-		event.user.remove_role(roleToRemove)
-		event.respond 'Role successfully removed'
+		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
 	end
 end
 
