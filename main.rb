@@ -421,7 +421,7 @@ bot.command :addrole, description:"Adds a role" do |event,arole|
 	if availableRoles.include? arole
 		event.user.add_role(roleToAdd)
 		event.respond 'Role successfully added'
-	if blockedRoles.include? arole
+	elsif blockedRoles.include? arole
 		event.respond "You are no allowed to do that.\n*Slaps " + event.user.username + '*'
 	else
 		event.respond "Please enter a valid role\n" + availableRoles.join(' | ')
