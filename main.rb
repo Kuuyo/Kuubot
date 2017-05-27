@@ -494,7 +494,8 @@ bot.command :gii, description:"Stare", usage:"When you feel the need to stare at
 end
 
 bot.command :gl, description:"Get chance and luck", usage:"When someone needs all the luck" do |event|
-	event.respond "images/gl.gif"
+	dir = 'images/gl.gif'
+	event.channel.send_file File.new(dir)
 end
 
 bot.command :sense, description:"Common sense?", usage:"When common sense gets lost somehow" do |event|
