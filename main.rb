@@ -469,7 +469,7 @@ bot.command :lewd, description:"Lewd sign", usage:"When something is lewd but yo
 end
 
 bot.command :toot, description:"NO TOOTING", usage:"When you're sick and tired of someone's tooting" do |event|
-	dir = 'images/toot.png'
+	dir = 'images/toot.jpg'
 	event.channel.send_file File.new(dir)
 end
 
