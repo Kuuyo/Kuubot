@@ -408,7 +408,11 @@ granblue =
 	'.socool.',
 	'.sorry.',
 	'.soulsoloist.',
-	'.striketime.',
+	'.striketime.'
+]
+
+granblue2 =
+[
 	'.tada.',
 	'.takealook.',
 	'.teehee.',
@@ -451,8 +455,19 @@ bot.message(containing: granblue) do |event|
 	event.channel.send_file File.new(dir)
 end
 
+bot.message(containing: granblue2) do |event|
+	content = event.message.content
+	index = content.index('.')
+	content.slice!(index)
+	index2 = content.index('.')
+	sticker = content[index..index2-1]
+	dir = 'images/granblue/'+sticker+'.png'
+	event.channel.send_file File.new(dir)
+end
+
 bot.command :granblue, description:"Lists Granblue sticker list" do |event|
 	event.respond granblue.join(' | ')
+	event.respond granblue2.join(' | ')
 end
 
 =begin
