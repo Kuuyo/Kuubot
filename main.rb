@@ -316,7 +316,7 @@ granblue =
 	'.goahead.',
 	'.gogopowpow.',
 	'.gonggong.',
-	'.goodwork.'.
+	'.goodwork.',
 	'.gottarun.',
 	'.gowild.',
 	'.gravitywave.',
