@@ -262,6 +262,199 @@ bot.command :emotes, description:"Lists emotes" do |event|
 	event.respond emotes.join(' | ')
 end
 
+granblue =
+[
+	'.2cool4school.',
+	'.101010.',
+	'.aboutthat.',
+	'.achoo.',
+	'.albacore.',
+	'.amazing.',
+	'.awesome.',
+	'.aww.',
+	'.awyeah.',
+	'.ayeaye.',
+	'.bambam.',
+	'.bemyvassal.',
+	'.bequiet.',
+	'.boom.',
+	'.bop.',
+	'.bullseyerun.',
+	'.bully.',
+	'.calmdown.',
+	'.canihelp.',
+	'.canna.',
+	'.checked.',
+	'.chompchomp.',
+	'.chompchomp2.',
+	'.clarity.',
+	'.comeforth.',
+	'.commandme.',
+	'.congrats.',
+	'.crackshot.',
+	'.cutielicious.',
+	'.danua.',
+	'.delightful.',
+	'.diantha.',
+	'.diola.',
+	'.dispel.',
+	'.doubletrouble.',
+	'.dripdrop.',
+	'.drool.',
+	'.easytopredict.',
+	'.electrifying.',
+	'.fail.',
+	'.feelingok.',
+	'.feendrayay.',
+	'.finally.',
+	'.followme.',
+	'.foryou.',
+	'.fullarsenal.',
+	'.gahaha.',
+	'.gimmeloot.',
+	'.go.',
+	'.goahead.',
+	'.gogopowpow.',
+	'.gonggong.',
+	'.goodwork.'.
+	'.gottarun.',
+	'.gowild.',
+	'.gravitywave.',
+	'.harie.',
+	'.haveoneonme.',
+	'.heart.',
+	'.heaveho1.',
+	'.heaveho2.',
+	'.heaveho3.',
+	'.heavenly.',
+	'.hellothere.',
+	'.heregoes.',
+	'.hereigo.',
+	'.heyo.',
+	'.heystopit.',
+	'.hi.',
+	'.hmmisee.',
+	'.humph.',
+	'.humph2.',
+	'.hurray.',
+	'.igiveup.',
+	'.iknowthatalready.',
+	'.illcalltheshots.',
+	'.illturnyouintoashes.',
+	'.imonit.',
+	'.imonit2.',
+	'.inputcommand.',
+	'.itsasecret.',
+	'.itsonnow.',
+	'.itsshowtime.',
+	'.ivegotyourback.',
+	'.ivbesaidtoomuch.',
+	'.jk.',
+	'.kanji.',
+	'.kanjo.',
+	'.kat.',
+	'.laserfocus.',
+	'.legendofrackam.',
+	'.letmehelp.',
+	'.letsdoit.',
+	'.letsgo.',
+	'.linaria.',
+	'.luvya.',
+	'.meow.',
+	'.mimi.',
+	'.missionaccomplished.',
+	'.mmmmmm.',
+	'.mmmthatwasgood.',
+	'.muchobliged.',
+	'.myb.',
+	'.mytummy.',
+	'.nailedit.',
+	'.neversurrender.',
+	'.nice.',
+	'.nicefight.',
+	'.nocando.',
+	'.nooooo.',
+	'.nope.',
+	'.notgood.',
+	'.ohno.',
+	'.ok.',
+	'.oneradishplease.',
+	'.ouch.',
+	'.panacea.',
+	'.pandemonium.',
+	'.paralyzed.',
+	'.peace.',
+	'.petrified.',
+	'.pffft.',
+	'.phalanx.',
+	'.pickaclass.',
+	'.please.',
+	'.pokepokepokepoke.',
+	'.potionsplease.',
+	'.qt.',
+	'.rackaaaaam.',
+	'.rackaaaam.',
+	'.rackaaam.',
+	'.rackam.',
+	'.rage.',
+	'.reportingin.',
+	'.shock.',
+	'.shoobitybebopboo.',
+	'.siero.',
+	'.sigh.',
+	'.siryessir.',
+	'.smile.',
+	'.smileforme.',
+	'.socool.',
+	'.sorry.',
+	'.soulsoloist.',
+	'.striketime.',
+	'.tada.',
+	'.takealook.',
+	'.teehee.',
+	'.thanks.',
+	'.thanksforwaiting.',
+	'.thankyoucomeagain.',
+	'.thatsabsurdidosay.',
+	'.thereyouhaveit.',
+	'.thwump.',
+	'.totallycrushed.',
+	'.tubulariffic.',
+	'.uhbye.',
+	'.untzuntzuntz.',
+	'.vyrncakes.',
+	'.waitforbackup.',
+	'.waitup.',
+	'.wap.',
+	'.welcome.',
+	'.whatsup.',
+	'.whawhawhat',
+	'.wheee.',
+	'.whoa.',
+	'.whoops.',
+	'.whyme.',
+	'.wigglewiggle.',
+	'.wobble.',
+	'.yikes.',
+	'.yourekiddingme',
+	'.yummy.',
+	'.zzz.'
+]
+
+bot.message(containing: granblue) do |event|
+	content = event.message.content
+	index = content.index('.')
+	content.slice!(index)
+	index2 = content.index('.')
+	sticker = content[index..index2-1]
+	dir = 'images/granblue/'+sticker+'.png'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :granblue, description:"Lists Granblue sticker list" do |event|
+	event.respond granblue.join(' | ')
+end
+
 =begin
 bot.member_update do |event|
 	user = event.user.nick
@@ -401,7 +594,14 @@ blockedRoles = [
 	'wind',
 	'water',
 	'light',
-	'dark'
+	'dark',
+	'rainbow',
+	'BANNED',
+	'pure cinnamon roll',
+	'slack',
+	'VILE LICKSACK',
+	'ANOTHER DIMENSION OF LICKSACK',
+	'chev\'s favorite child'
 ]
 
 availableRoles = [
@@ -413,7 +613,10 @@ availableRoles = [
 	'celeste',
 	'thbot',
 	'slime',
-	'6man'
+	'6man',
+	'ubaha',
+	'rotb',
+	'grande'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
@@ -441,11 +644,13 @@ bot.command :remrole, description:"Removes a role" do |event,rrole|
 end
 
 bot.command :toko, description:"Lecia sticker", usage:"Don't 'use' Toko, Toko is nice and ready to help" do |event|
-	event.respond "https://cdn.discordapp.com/attachments/308345436760965120/309358140116434945/stamp61.png"
+	dir = 'images/toko.png'
+	event.channel.send_file File.new(dir)
 end
 
 bot.command :truth, description:"S H O C K I N G   T R U T H", usage:"When the truth is shocking" do |event|
-	event.respond "https://cdn.discordapp.com/attachments/308368284472967168/309360697446498306/5879680.jpg"
+	dir = 'images/truth.jpg'
+	event.channel.send_file File.new(dir)
 end
 
 bot.command :prim, description:"Kongoushrugh", usage:"When a regular shrugh isn't enough" do |event|
