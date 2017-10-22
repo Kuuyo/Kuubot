@@ -659,7 +659,7 @@ bot.command :remrole, description:"Removes a role" do |event,rrole|
 end
 
 bot.command :toko, description:"Lecia sticker", usage:"Don't 'use' Toko, Toko is nice and ready to help" do |event|
-	dir = 'images/toko.png'
+	dir = 'images/tokopoop.png'
 	event.channel.send_file File.new(dir)
 end
 
