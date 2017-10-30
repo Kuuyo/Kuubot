@@ -177,6 +177,10 @@ bot.message(containing: Regexp.new(Regexp.escape("*Pets"), Regexp::IGNORECASE)) 
 			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
 				event.respond event.message.content
 			end
+		when user = 170295607506894857
+			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
 	end
 end
 
@@ -189,6 +193,10 @@ bot.message(containing: Regexp.new(Regexp.escape("*Pats"), Regexp::IGNORECASE)) 
 			end
 		when user = 223493025748353024
 			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
+				event.respond event.message.content
+			end
+		when user = 170295607506894857
+			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
 				event.respond event.message.content
 			end
 	end
@@ -473,6 +481,64 @@ end
 bot.command :granblue, description:"Lists Granblue sticker list" do |event|
 	event.respond granblue.join(' | ')
 	event.respond granblue2.join(' | ')
+end
+
+quotes=[
+	';banjo;',
+	';bbj;',
+	';bbj2;',
+	';bbj3;',
+	';chinko;',
+	';cho;',
+	';crom;',
+	';crom2;',
+	';dweller;',
+	';fire;',
+	';kulk;',
+	';mimi;',
+	';mimi2;',
+	';mimi3;',
+	';mimi4;',
+	';mimi5;',
+	';ota;',
+	';ota2;',
+	';ota3;',
+	';otoko;',
+	';otoko2;',
+	';otoko3;',
+	';otoko4;',
+	';prim;',
+	';rin;',
+	';rules;',
+	';shu;',
+	';steve;',
+	';targs;',
+	';targs2;',
+	';targs3;',
+	';tel;',
+	';tel2;',
+	';tel3;',
+	';tel4;',
+	';tel5;',
+	';telruok;',
+	';telruok2;',
+	';telruok3;',
+	';toko;',
+	';toko2;'
+]
+
+bot.message(containing: quotes) do |event|
+	content = event.message.content
+	index = content.index(';')
+	content.slice!(index)
+	index2 = content.index(';')
+	quote = content[index..index2-1]
+	dir = 'images/quotes/'+quote+'.jpg'
+	event.channel.send_file File.new(dir)
+end
+
+bot.command :granblue, description:"Lists quotes list" do |event|
+	event.respond quotes.join(' | ')
 end
 
 =begin
