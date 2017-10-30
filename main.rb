@@ -537,7 +537,7 @@ bot.message(containing: quotes) do |event|
 	event.channel.send_file File.new(dir)
 end
 
-bot.command :granblue, description:"Lists quotes list" do |event|
+bot.command :quotes, description:"Lists quotes list" do |event|
 	event.respond quotes.join(' | ')
 end
 
