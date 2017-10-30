@@ -26,7 +26,7 @@ then with that source find the og:image meta tag
 203191910246907904 PG ?
 308345436760965120 Solace
 
-223493025748353024 Kanjo
+223493025748353024 Kanji
 118044849030168577 Prim
 170295607506894857 Toko
 196820353429798914 Ota
@@ -34,6 +34,8 @@ then with that source find the og:image meta tag
 185040240132620288 Wappo
 173564428942442497 Tel
 138634079972098048 Kuuyo
+285655041497497620 Kaga
+182909161833627648 Mimi
 Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
 =end
 
@@ -327,6 +329,7 @@ granblue =
 	'.heaveho2.',
 	'.heaveho3.',
 	'.heavenly.',
+	'.heeheehee.',
 	'.hellothere.',
 	'.heregoes.',
 	'.hereigo.',
@@ -397,7 +400,11 @@ granblue =
 	'.rackaaam.',
 	'.rackam.',
 	'.rage.',
-	'.reportingin.',
+	'.reportingin.'
+]
+
+granblue2 =
+[
 	'.shock.',
 	'.shoobitybebopboo.',
 	'.siero.',
@@ -408,11 +415,7 @@ granblue =
 	'.socool.',
 	'.sorry.',
 	'.soulsoloist.',
-	'.striketime.'
-]
-
-granblue2 =
-[
+	'.striketime.',
 	'.tada.',
 	'.takealook.',
 	'.teehee.',
@@ -440,6 +443,8 @@ granblue2 =
 	'.wigglewiggle.',
 	'.wobble.',
 	'.yikes.',
+	'.yipyip.',
+	'.yipyip2.',
 	'.yourekiddingme',
 	'.yummy.',
 	'.zzz.'
@@ -631,7 +636,8 @@ availableRoles = [
 	'6man',
 	'ubaha',
 	'rotb',
-	'grande'
+	'grande',
+	'magnaHL'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
