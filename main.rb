@@ -196,7 +196,7 @@ bot.message(containing: Regexp.new(Regexp.escape("*Pats"), Regexp::IGNORECASE)) 
 				event.respond event.message.content
 			end
 		when user = 170295607506894857
-			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
+			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
 				event.respond event.message.content
 			end
 	end
