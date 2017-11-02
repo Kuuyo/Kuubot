@@ -169,36 +169,24 @@ end
 bot.message(containing: Regexp.new(Regexp.escape("*Pets"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
 	case user
-		when user = 138634079972098048
-			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
-		when user = 223493025748353024
-			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
 		when user = 170295607506894857
-			if event.message.content != Regexp.new(Regexp.escape("*Pets Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
+			event.respond event.message.content
+		when user = 138634079972098048
+			event.respond event.message.content
+		when user = 223493025748353024
+			event.respond event.message.content
 	end
 end
 
 bot.message(containing: Regexp.new(Regexp.escape("*Pats"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
 	case user
-		when user = 138634079972098048
-			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
-		when user = 223493025748353024
-			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
 		when user = 170295607506894857
-			if event.message.content != Regexp.new(Regexp.escape("*Pats Kuubot*"), Regexp::IGNORECASE)
-				event.respond event.message.content
-			end
+			event.respond event.message.content
+		when user = 138634079972098048
+			event.respond event.message.content
+		when user = 223493025748353024
+			event.respond event.message.content
 	end
 end
 
