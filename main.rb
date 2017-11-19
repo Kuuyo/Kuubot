@@ -691,7 +691,8 @@ availableRoles = [
 	'ubaha',
 	'rotb',
 	'grande',
-	'magnaHL'
+	'magnaHL',
+	'bhl'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
