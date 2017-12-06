@@ -347,7 +347,7 @@ granblue =
 	'.itsonnow.',
 	'.itsshowtime.',
 	'.ivegotyourback.',
-	'.ivbesaidtoomuch.',
+	'.ivesaidtoomuch.',
 	'.jk.',
 	'.kanji.',
 	'.kanjo.',
