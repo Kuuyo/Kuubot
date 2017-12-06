@@ -3,7 +3,7 @@ GIT
   revision: bc0aa38fb977b192fe22dbaa782359c7b709a57a
   specs:
     discordrb (3.2.1)
-      discordrb-webhooks ~> 3.2.0.1
+      discordrb-webhooks >= 3.2.0.1
       opus-ruby >= 0
       rbnacl ~> 3.4.0
       rest-client >= 0
