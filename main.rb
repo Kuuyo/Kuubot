@@ -675,7 +675,19 @@ blockedRoles = [
 	'slack',
 	'VILE LICKSACK',
 	'ANOTHER DIMENSION OF LICKSACK',
-	'chev\'s favorite child'
+	'chev\'s favorite child',
+	'precious pickle',
+	'crocoshark',
+	'kouhai',
+	'tourist',
+	'on vacation',
+	'spec',
+	'haven',
+	'kagaboop',
+	'EGGSACK',
+	'lucodia',
+	'pervert',
+	'team SWE'
 ]
 
 availableRoles = [
@@ -689,10 +701,13 @@ availableRoles = [
 	'slime',
 	'6man',
 	'ubaha',
-	'rotb',
+	'qilinlong',
 	'grande',
 	'magnaHL',
-	'bhl'
+	'bhl',
+	'ubhl',
+	'magna2',
+	'angelframboss'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
