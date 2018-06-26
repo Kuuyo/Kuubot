@@ -2,7 +2,6 @@
 require 'discordrb'
 
 bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smOQ.XOLClWa4t2KLoY6KOXO1o-1ejqo', application_id: 309244843077533697, prefix: "!"
-time = Time.now;
 
 =begin
 !baka
@@ -927,14 +926,15 @@ bot.command :dance, description:"Dance", usage:"!dance" do |event|
 end
 
 bot.command :time do |event|
+	time = Time.now;
 	event.respond time.inspect
 end
 
-time = Time.utc(time.year,time.month,time.day,3,0,0)
 timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
 
 bot.message() do |event|
 	server = event.server.id
+	time = Time.now;
 	case server
 		when server = 203172685449134080
 			if time === timeCondenser1
