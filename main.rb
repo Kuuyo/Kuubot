@@ -930,11 +930,10 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
-timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
-
 bot.message() do |event|
 	server = event.server.id
 	time = Time.now;
+	timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
 	case server
 		when server = 203172685449134080
 			if time === timeCondenser1
