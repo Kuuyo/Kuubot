@@ -931,8 +931,7 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
-bot.bucket :gfltimer, limit: 0, time_span: 0, delay: 3
-bot.message bucket: :gfltimer do |event|
+bot.message do |event|
 	server = event.server
 	serverId = event.server.id
 	time = Time.now
@@ -974,6 +973,7 @@ bot.message bucket: :gfltimer do |event|
 	end
 end
 
+=begin
 bot.message() do |event|
 	server = event.server
 	serverId = event.server.id
@@ -1007,5 +1007,6 @@ bot.message() do |event|
 			end
 	end
 end
+=end
 
 bot.run
