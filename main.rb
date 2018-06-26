@@ -931,7 +931,8 @@ bot.command :time do |event|
 end
 
 bot.message() do |event|
-	server = event.server.id
+	server = event.server
+	serverId = event.server.id
 	time = Time.now
 
 	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
@@ -942,7 +943,7 @@ bot.message() do |event|
 	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
 	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
 	
-	case server
+	case serverId
 		when 203172685449134080
 			if time >= timeCondenser1Start and time <= timeCondenser1End
 				timeRemaining = timeCondenser1End - time
