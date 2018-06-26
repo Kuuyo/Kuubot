@@ -310,7 +310,7 @@ granblue =
 	'.durray.',
 	'.easytopredict.',
 	'.electrifying.',
-	'.faaoh.'.
+	'.faaoh.',
 	'.fail.',
 	'.feelingok.',
 	'.feelmypassion.',
