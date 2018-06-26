@@ -939,7 +939,7 @@ bot.message() do |event|
 	reset = Time.utc(time.year,time.month,time.day,8,0,0)
 	batteryReset1 = Time.utc(time.year,time.month,time.day,11,0,0)
 	timeCondenser2Start = Time.utc(time.year,time.month,time.day,19,0,0)
-	timeCondenser2end = Time.utc(time.year,time.month,time.day,22,0,0)
+	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
 	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
 	
 	case server
