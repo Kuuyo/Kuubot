@@ -2,6 +2,7 @@
 require 'discordrb'
 
 bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smOQ.XOLClWa4t2KLoY6KOXO1o-1ejqo', application_id: 309244843077533697, prefix: "!"
+time = Time.new;
 
 =begin
 !baka
@@ -12,7 +13,7 @@ Kuubot I love you
 poke
 clarify help
 gw screenshots
-limit returning messages
+limit returning messages -> done for crew
 chu
 !general
 !raid
@@ -266,19 +267,25 @@ granblue =
 	'.101010.',
 	'.aboutthat.',
 	'.achoo.',
+	'.aidus.',
 	'.albacore.',
 	'.amazing.',
+	'.amazing2.',
 	'.awesome.',
+	'.awombocombo.',
 	'.aww.',
 	'.awyeah.',
 	'.ayeaye.',
 	'.bambam.',
+	'.banjo.',
 	'.bemyvassal.',
 	'.bequiet.',
+	'.bingo.',
 	'.boom.',
 	'.bop.',
 	'.bullseyerun.',
 	'.bully.',
+	'.buzzzz.',
 	'.calmdown.',
 	'.canihelp.',
 	'.canna.',
@@ -299,33 +306,47 @@ granblue =
 	'.doubletrouble.',
 	'.dripdrop.',
 	'.drool.',
+	'.drool2.',
+	'.durray.',
 	'.easytopredict.',
 	'.electrifying.',
+	'.faaoh.'.
 	'.fail.',
 	'.feelingok.',
+	'.feelmypassion.',
 	'.feendrayay.',
 	'.finally.',
 	'.followme.',
 	'.foryou.',
 	'.fullarsenal.',
 	'.gahaha.',
+	'.gee.',
 	'.gimmeloot.',
 	'.go.',
 	'.goahead.',
+	'.goforit.',
+	'.gogo.',
 	'.gogopowpow.',
+	'.gong.',
 	'.gonggong.',
+	'.good.',
 	'.goodwork.',
+	'.goodwork2.',
 	'.gottarun.',
 	'.gowild.',
 	'.gravitywave.',
+	'.happybellsounds.',
+	'.happyboost.',
 	'.harie.',
 	'.haveoneonme.',
 	'.heart.',
-	'.heaveho1.',
+	'.heaveho.',
 	'.heaveho2.',
 	'.heaveho3.',
+	'.heaveho4.'
 	'.heavenly.',
 	'.heeheehee.',
+	'.hehegotthatright.',
 	'.hellothere.',
 	'.heregoes.',
 	'.hereigo.',
@@ -333,13 +354,17 @@ granblue =
 	'.heystopit.',
 	'.hi.',
 	'.hmmisee.',
+	'.hoohah.',
 	'.humph.',
 	'.humph2.',
 	'.hurray.',
 	'.igiveup.',
 	'.iknowthatalready.',
+	'.illburnyou.',
 	'.illcalltheshots.',
+	'.illenditswiftly.',
 	'.illturnyouintoashes.',
+	'.iloveyou.',
 	'.imonit.',
 	'.imonit2.',
 	'.inputcommand.',
@@ -353,10 +378,12 @@ granblue =
 	'.kanjo.',
 	'.kat.',
 	'.laserfocus.',
+	'.leaveittome.',
 	'.legendofrackam.',
 	'.letmehelp.',
 	'.letsdoit.',
 	'.letsgo.',
+	'.lilelilele.',
 	'.linaria.',
 	'.luvya.',
 	'.meow.',
@@ -365,20 +392,29 @@ granblue =
 	'.mmmmmm.',
 	'.mmmthatwasgood.',
 	'.muchobliged.',
+	'.myahahhah.',
 	'.myb.',
 	'.mytummy.',
 	'.nailedit.',
 	'.neversurrender.',
 	'.nice.',
 	'.nicefight.',
+	'.nio.',
 	'.nocando.',
+	'.nod.',
 	'.nooooo.',
 	'.nope.',
 	'.notgood.',
 	'.ohno.',
 	'.ok.',
+	'.ok2.',
 	'.oneradishplease.',
+	'.oooh.',
 	'.ouch.',
+]
+
+granblue2 =
+[
 	'.panacea.',
 	'.pandemonium.',
 	'.paralyzed.',
@@ -386,7 +422,9 @@ granblue =
 	'.petrified.',
 	'.pffft.',
 	'.phalanx.',
+	'.phalanx2.',
 	'.pickaclass.',
+	'.playtimeisover.',
 	'.please.',
 	'.pokepokepokepoke.',
 	'.potionsplease.',
@@ -397,10 +435,7 @@ granblue =
 	'.rackam.',
 	'.rage.',
 	'.reportingin.'
-]
-
-granblue2 =
-[
+	'.shing.',
 	'.shock.',
 	'.shoobitybebopboo.',
 	'.siero.',
@@ -415,28 +450,37 @@ granblue2 =
 	'.tada.',
 	'.takealook.',
 	'.teehee.',
+	'.tgif.',
 	'.thanks.',
 	'.thanksforwaiting.',
 	'.thankyoucomeagain.',
+	'.thathurt.',
 	'.thatsabsurdidosay.',
 	'.thereyouhaveit.',
 	'.thwump.',
 	'.totallycrushed.',
 	'.tubulariffic.',
 	'.uhbye.',
+	'.umnogeeh.',
 	'.untzuntzuntz.',
+	'.vyrn.',
+	'.vyrn2.',
+	'.vyrn3.',
 	'.vyrncakes.',
 	'.waitforbackup.',
 	'.waitup.',
 	'.wap.',
 	'.welcome.',
 	'.whatsup.',
+	'.whatsup2.',
 	'.whawhawhat',
 	'.wheee.',
 	'.whoa.',
+	'.wholaughed.',
 	'.whoops.',
 	'.whyme.',
 	'.wigglewiggle.',
+	'.woahwoahyeaaah.',
 	'.wobble.',
 	'.yikes.',
 	'.yipyip.',
@@ -641,7 +685,8 @@ bot.command :sheet, description:"HL Sheets" do |event|
 	event.respond "https://docs.google.com/spreadsheets/d/1lvyLV0L-FSSeLyhNvadkuU4cZKdcBTQnOCtGBXbiemA/edit?usp=sharing"
 end
 
-bot.command :crew, description:"Info on crew members" do |event|
+bot.bucket :crewlink, limit: 0, time_span: 0, delay: 300
+bot.command :crew, description:"Info on crew members", bucket: :crewlink, rate_limit_message: 'It is still %time% more seconds before I am allowed to do that.' do |event|
 	event.respond "https://docs.google.com/spreadsheets/d/169C8SuBqj5RI1J5A8FLjua0zI595v8COJde90pZB0c0/edit?usp=sharing"
 end
 
@@ -659,35 +704,53 @@ end
 
 blockedRoles = [
 	'roles',
-	'leaders',
-	'Kuubot',
-	'lurker',
-	'solace',
+	'leader',
+	'specialist',
+	'kureller',
+	'dungeon master',
+	'special snowman',
+	'orange balloon',
+	'nice mug',
+	'BANNED',
+	'pure cinnamon roll',
+	'the real OG',
+	'precious pickle',
+	'crocoshark',
+	'shitlord',
+	'GFL Magician',
+	'perverted old man',
+	'gap moe seme',
+	'hipster',
 	'fire',
 	'earth',
 	'wind',
 	'water',
 	'light',
 	'dark',
+	'super ninja',
 	'rainbow',
-	'BANNED',
-	'pure cinnamon roll',
-	'slack',
-	'VILE LICKSACK',
-	'ANOTHER DIMENSION OF LICKSACK',
-	'chev\'s favorite child',
-	'precious pickle',
-	'crocoshark',
+	'confused',
 	'kouhai',
 	'tourist',
+	'solace',
 	'on vacation',
 	'spec',
 	'haven',
+	'lurker',
+	'Kuubot',
+	'slack',
+	'smol child',
 	'kagaboop',
+	'VILE LICKSACK',
+	'ANOTHER DIMENSION OF LICKSACK',
+	'chev\'s favorite child',
 	'EGGSACK',
 	'lucodia',
 	'pervert',
-	'team SWE'
+	'team SWE',
+	'bully',
+	'new role',
+	'5m'
 ]
 
 availableRoles = [
@@ -707,7 +770,9 @@ availableRoles = [
 	'bhl',
 	'ubhl',
 	'magna2',
-	'angelframboss'
+	'angelframboss',
+	'coop',
+	'thor'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
@@ -859,6 +924,10 @@ end
 
 bot.command :dance, description:"Dance", usage:"!dance" do |event|
 	event.respond "No."
+end
+
+bot.command :time do |event|
+	event.respond time.inspect
 end
 
 bot.run
