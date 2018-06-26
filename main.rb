@@ -2,7 +2,7 @@
 require 'discordrb'
 
 bot = Discordrb::Commands::CommandBot.new token: 'MzA5MjQ0ODQzMDc3NTMzNjk3.C-smOQ.XOLClWa4t2KLoY6KOXO1o-1ejqo', application_id: 309244843077533697, prefix: "!"
-time = Time.new;
+time = Time.now;
 
 =begin
 !baka
@@ -932,13 +932,13 @@ end
 
 time = Time.utc(time.year,time.month,time.day,3,0,0)
 
-bot.command :timetest do |event|
+do |event|
 	server = event.server.id
 	event.respond time.inspect
 	case server
 		when server = 203172685449134080
 			if time.hour === 3 and time.min === 0 and time.sec === 0
-				event.respond "Battery condenser recharge 1 started!"
+				event.bot.send_message '203219283793149952',"Battery condenser recharge 1 started!"
 			end
 	end
 end
