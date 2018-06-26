@@ -343,7 +343,7 @@ granblue =
 	'.heaveho.',
 	'.heaveho2.',
 	'.heaveho3.',
-	'.heaveho4.'
+	'.heaveho4.',
 	'.heavenly.',
 	'.heeheehee.',
 	'.hehegotthatright.',
