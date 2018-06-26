@@ -943,7 +943,7 @@ bot.message() do |event|
 	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
 	
 	case server
-		when server = 203172685449134080
+		when 203172685449134080
 			if time >= timeCondenser1Start and time <= timeCondenser1End
 				timeRemaining = timeCondenser1End - time
 				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
@@ -958,7 +958,7 @@ bot.message() do |event|
 				roles.each{|role| role.mention("Test desu") if role.name === "gflping"}
 			end
 
-		when server = 308345436760965120
+		when 308345436760965120
 			if time >= timeCondenser1Start and time <= timeCondenser1End
 				timeRemaining = timeCondenser1End - time
 				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
