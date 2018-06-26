@@ -934,6 +934,7 @@ time = Time.utc(time.year,time.month,time.day,3,0,0)
 
 bot.command :timetest do |event|
 	server = event.server.id
+	event.respond time.inspect
 	case server
 		when server = 203172685449134080
 			if time.hour = 3 and time.min = 0 and time.sec = 0
