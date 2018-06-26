@@ -930,4 +930,15 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
+time.hour = 3
+time.min = 0
+time.sec = 0
+
+case server
+	when server = 203172685449134080
+		if time.hour = 3 and time.min = 0 and time.sec = 0
+			event.respond "Battery condenser recharge 1 started!"
+		end
+end
+
 bot.run
