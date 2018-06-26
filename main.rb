@@ -947,12 +947,14 @@ bot.message() do |event|
 		when server = 203172685449134080
 			if time >= timeCondenser1Start and time <= timeCondenser1End
 				timeRemaining = timeCondenser1End - time
-				timeRemainingString = "Time remaining: " + timeRemaining.to_s
+				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
+				timeRemainingString = "Time remaining: " + timeRemaining
 				event.bot.send_message '203219283793149952', "Battery condenser recharge 1"
 				event.bot.send_message '203219283793149952', timeRemainingString
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End
 				timeRemaining = timeCondenser2End - time
-				timeRemainingString = "Time remaining: " + timeRemaining.to_s
+				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
+				timeRemainingString = "Time remaining: " + timeRemaining
 				event.bot.send_message '203219283793149952', "Battery condenser recharge 2"
 				event.bot.send_message '203219283793149952', timeRemainingString
 			end
