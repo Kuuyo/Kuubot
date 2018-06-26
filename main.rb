@@ -941,9 +941,5 @@ bot.command :timetest do |event|
 			end
 	end
 end
-case server
-	when server = 203172685449134080
-
-end
 
 bot.run
