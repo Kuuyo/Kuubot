@@ -932,7 +932,7 @@ end
 
 time = Time.utc(time.year,time.month,time.day,3,0,0)
 
-eventdesu = |event|
+eventdesu = event
 	server = eventdesu.server.id
 	eventdesu.respond time.inspect
 	case server
