@@ -938,7 +938,7 @@ bot.message() do |event|
 	case server
 		when server = 203172685449134080
 			if time === timeCondenser1
-				event.send_message '203219283793149952', "Battery condenser recharge 1 started!"
+				event.bot.send_message '203219283793149952', "Battery condenser recharge 1 started!"
 			end
 
 	end
