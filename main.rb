@@ -434,7 +434,7 @@ granblue2 =
 	'.rackaaam.',
 	'.rackam.',
 	'.rage.',
-	'.reportingin.'
+	'.reportingin.',
 	'.shing.',
 	'.shock.',
 	'.shoobitybebopboo.',
