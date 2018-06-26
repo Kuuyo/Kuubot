@@ -933,12 +933,20 @@ end
 bot.message() do |event|
 	server = event.server.id
 	time = Time.now
-	time = Time.utc(time.year,time.month,time.day,3,0,0)
-	timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
+	time = Time.utc(time.year,time.month,time.day,3,50,0)
+
+	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
+	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
+	reset = Time.utc(time.year,time.month,time.day,8,0,0)
+	batteryReset1 = Time.utc(time.year,time.month,time.day,11,0,0)
+	timeCondenser2Start = Time.utc(time.year,time.month,time.day,19,0,0)
+	timeCondenser2end = Time.utc(time.year,time.month,time.day,22,0,0)
+	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
+	
 	case server
 		when server = 203172685449134080
-			if time === timeCondenser1
-				event.bot.send_message '203219283793149952', "Battery condenser recharge 1 started!"
+			if time >= timeCondenser1Start and time <= timeCondenser1End
+				event.bot.send_message '203219283793149952', "Battery condenser recharge 1"
 			end
 
 	end
