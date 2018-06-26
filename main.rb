@@ -930,9 +930,7 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
-time.hour = 3
-time.min = 0
-time.sec = 0
+time = Time.utc(time.year,time.month,time.day,3,0,0)
 
 case server
 	when server = 203172685449134080
