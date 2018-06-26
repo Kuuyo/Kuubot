@@ -932,11 +932,18 @@ end
 
 time = Time.utc(time.year,time.month,time.day,3,0,0)
 
+bot.command :timetest do |event|
+	server = event.server.id
+	case server
+		when server = 203172685449134080
+			if time.hour = 3 and time.min = 0 and time.sec = 0
+				event.respond "Battery condenser recharge 1 started!"
+			end
+	end
+end
 case server
 	when server = 203172685449134080
-		if time.hour = 3 and time.min = 0 and time.sec = 0
-			event.respond "Battery condenser recharge 1 started!"
-		end
+
 end
 
 bot.run
