@@ -956,7 +956,7 @@ bot.message() do |event|
 				timeRemainingString = "Time remaining: " + timeRemaining
 				event.bot.send_temporary_message '203219283793149952', "Battery condenser recharge 2\n" + timeRemainingString, 3
 				roles = server.roles
-				roles.each{|role| role.mention if role.name === "gflping"}
+				roles.each{|role| event.bot.send_temporary_message role.mention if role.name === "gflping"}
 			end
 
 		when 308345436760965120
