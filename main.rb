@@ -771,7 +771,8 @@ availableRoles = [
 	'magna2',
 	'angelframboss',
 	'coop',
-	'thor'
+	'thor',
+	'gflping'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
@@ -988,18 +989,21 @@ bot.message() do |event|
 	
 	case serverId
 		when 203172685449134080
-			if time >= timeCondenser1Start and time <= timeCondenser1End
-
-			elsif time >= timeCondenser2Start and time <= timeCondenser2End
+			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time < 300
 				roles = server.roles
-				roles.each{|role| event.bot.send_message('203219283793149952',role.mention,3) if role.name === "gflping"}
+				roles.each{|role| event.bot.send_message('203219283793149952',role.mention + "Battery condenser recharge 1: " +  Time.at(timeCondenser1End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time < 300
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('203219283793149952',role.mention + "Battery condenser recharge 2: " +  Time.at(timeCondenser2End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
 			end
 
 		when 308345436760965120
-			if time >= timeCondenser1Start and time <= timeCondenser1End
-
-			elsif time >= timeCondenser2Start and time <= timeCondenser2End
-
+			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time < 300
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('203219283793149952',role.mention + "Battery condenser recharge 1: " +  Time.at(timeCondenser1End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time < 300
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('203219283793149952',role.mention + "Battery condenser recharge 2: " +  Time.at(timeCondenser2End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
 			end
 	end
 end
