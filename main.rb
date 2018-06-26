@@ -955,8 +955,8 @@ bot.message() do |event|
 				timeRemaining = timeCondenser2End - time
 				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
 				timeRemainingString = "Time remaining: " + timeRemaining
-				event.bot.send_message '203219283793149952', "Battery condenser recharge 2"
-				event.bot.send_message '203219283793149952', timeRemainingString
+				event.bot.send_temporary_message '203219283793149952', "Battery condenser recharge 2", 5
+				event.bot.send_temporary_message '203219283793149952', timeRemainingString, 5
 			end
 	end
 end
