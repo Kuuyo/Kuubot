@@ -946,7 +946,10 @@ bot.message() do |event|
 	case server
 		when server = 203172685449134080
 			if time >= timeCondenser1Start and time <= timeCondenser1End
+				timeRemaining = timeCondenser1End - time
+				timeRemainingString = "Time remaining: " + timeRemaining.hour + "h" + timeRemaining.min
 				event.bot.send_message '203219283793149952', "Battery condenser recharge 1"
+				event.bot.send_message '203219283793149952', timeRemainingString
 			end
 
 	end
