@@ -926,13 +926,13 @@ bot.command :dance, description:"Dance", usage:"!dance" do |event|
 end
 
 bot.command :time do |event|
-	time = Time.now;
+	time = Time.now
 	event.respond time.inspect
 end
 
 bot.message() do |event|
 	server = event.server.id
-	time = Time.now;
+	time = Time.utc(time.year,time.month,time.day,3,0,0)
 	timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
 	case server
 		when server = 203172685449134080
