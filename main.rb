@@ -930,7 +930,8 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
-bot.message() do |event|
+bot.bucket :gfltimer, limit: 0, time_span: 0, delay: 3
+bot.message bucket: :gfltimer do |event|
 	server = event.server
 	serverId = event.server.id
 	time = Time.now
@@ -955,8 +956,6 @@ bot.message() do |event|
 				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
 				timeRemainingString = "Time remaining: " + timeRemaining
 				event.bot.send_temporary_message '203219283793149952', "Battery condenser recharge 2\n" + timeRemainingString, 3
-				roles = server.roles
-				roles.each{|role| event.bot.send_temporary_message('203219283793149952',role.mention,3) if role.name === "gflping"}
 			end
 
 		when 308345436760965120
@@ -970,6 +969,37 @@ bot.message() do |event|
 				timeRemaining = Time.at(timeRemaining).utc.strftime("%H:%M:%S")
 				timeRemainingString = "Time remaining: " + timeRemaining
 				event.bot.send_temporary_message '453754112119668746', "Battery condenser recharge 2\n" + timeRemainingString, 3
+			end
+	end
+end
+
+bot.message() do |event|
+	server = event.server
+	serverId = event.server.id
+	time = Time.now
+
+	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
+	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
+	reset = Time.utc(time.year,time.month,time.day,8,0,0)
+	batteryReset1 = Time.utc(time.year,time.month,time.day,11,0,0)
+	timeCondenser2Start = Time.utc(time.year,time.month,time.day,19,0,0)
+	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
+	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
+	
+	case serverId
+		when 203172685449134080
+			if time >= timeCondenser1Start and time <= timeCondenser1End
+
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('203219283793149952',role.mention,3) if role.name === "gflping"}
+			end
+
+		when 308345436760965120
+			if time >= timeCondenser1Start and time <= timeCondenser1End
+
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End
+
 			end
 	end
 end
