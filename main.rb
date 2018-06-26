@@ -932,15 +932,15 @@ end
 
 time = Time.utc(time.year,time.month,time.day,3,0,0)
 
-do |event|
-	server = event.server.id
-	event.respond time.inspect
+eventdesu = |event|
+	server = eventdesu.server.id
+	eventdesu.respond time.inspect
 	case server
 		when server = 203172685449134080
 			if time.hour === 3 and time.min === 0 and time.sec === 0
-				event.bot.send_message '203219283793149952',"Battery condenser recharge 1 started!"
+				eventdesu.bot.send_message '203219283793149952',"Battery condenser recharge 1 started!"
 			end
 	end
-end
+
 
 bot.run
