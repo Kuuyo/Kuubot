@@ -930,16 +930,17 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
+time = Time.utc(time.year,time.month,time.day,3,0,0)
 timeCondenser1 = Time.utc(time.year,time.month,time.day,3,0,0)
 
 bot.message() do |event|
 	server = event.server.id
-	event.respond time.inspect
 	case server
 		when server = 203172685449134080
-			if time.hour === 3 and time.min === 0 and time.sec === 0
+			if time === timeCondenser1
 				event.respond "Battery condenser recharge 1 started!"
 			end
+
 	end
 end
 
