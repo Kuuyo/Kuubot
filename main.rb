@@ -931,6 +931,62 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
+def TimerEvent(channel,message,remainingTime,event)
+	history = event.channel.history(50)
+	roles = event.server.roles
+	count = history.count{|message| message.content.include? message}
+	case count
+		when 0
+			roles.each{|role| event.bot.send_message(channel,role.mention + message +  Time.at(remainingTime).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+	end
+end
+
+
+bot.message() do |event|
+	server = event.server
+	serverId = event.server.id
+	time = Time.now
+	time = Time.utc(time.year,time.month,time.day,5,56,0)
+
+	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
+	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
+	reset = Time.utc(time.year,time.month,time.day,8,0,0)
+	batteryReset1 = Time.utc(time.year,time.month,time.day,11,0,0)
+	timeCondenser2Start = Time.utc(time.year,time.month,time.day,19,0,0)
+	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
+	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
+
+	offset = 300
+	
+	case serverId
+		when 203172685449134080
+			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,roles,history)
+
+			elsif time >= timeCondenser1Start and time <= timeCondenser1End and time - timeCondenser1Start <= offset
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,roles,history)
+			
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time <= offset
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,roles,history)
+
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End and time - timeCondenser2Start <= offset
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,roles,history)
+			
+			end
+=begin
+		when 308345436760965120
+			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time < 300
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('453754112119668746',role.mention + "Battery condenser recharge 1: " +  Time.at(timeCondenser1End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time < 300
+				roles = server.roles
+				roles.each{|role| event.bot.send_message('453754112119668746',role.mention + "Battery condenser recharge 2: " +  Time.at(timeCondenser2End - time).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+			end
+=end
+	end
+end
+
+=begin
 bot.message do |event|
 	server = event.server
 	serverId = event.server.id
@@ -973,7 +1029,7 @@ bot.message do |event|
 	end
 end
 
-=begin
+
 bot.message() do |event|
 	server = event.server
 	serverId = event.server.id
