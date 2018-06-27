@@ -985,6 +985,12 @@ bot.message() do |event|
 
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End and time - timeCondenser2Start <= offset
 				TimerEvent('453754112119668746',"Battery condenser recharge 2 ending in!: ",timeCondenser2End - time,event)
+
+			elsif time >= timeCondenser2End and time <= batteryReset2 and batteryReset2 - time <= offset
+				TimerEvent('453754112119668746',"Battery reset 2 starting in!: ",timeCondenser2End - time,event)
+
+			elsif time >= reset and time <= batteryReset1 and batteryReset1 - time <= offset
+				TimerEvent('453754112119668746',"Battery reset 1 starting in!: ",timeCondenser2End - time,event)
 			
 			end
 	end
