@@ -934,7 +934,7 @@ end
 def TimerEvent(channel,message,remainingTime,event)
 	channels = event.server.channels
 	kuupingChannel = channels.detect{|c| c.id == channel}
-	history = kuupingChannel.history(50)
+	history = kuupingChannel.history(5)
 	roles = event.server.roles
 	count = history.count{|hMessage| hMessage.content.include? message}
 	case count
