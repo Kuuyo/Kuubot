@@ -934,7 +934,7 @@ end
 def TimerEvent(channel,message,remainingTime,event)
 	history = event.channel.history(50)
 	roles = event.server.roles
-	count = history.count{|message| message.content.include? message}
+	count = history.count{|hMessage| hMessage.content.include? message}
 	case count
 		when 0
 			roles.each{|role| event.bot.send_message(channel,role.mention + message +  Time.at(remainingTime).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
