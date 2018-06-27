@@ -960,7 +960,7 @@ bot.message() do |event|
 	
 	case serverId
 		when 203172685449134080
-		debug = time - timeCondenser1End
+		debug = timeCondenser1End - time
 		debug = debug.to_s
 		event.respond debug
 			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
