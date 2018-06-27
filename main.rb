@@ -946,7 +946,7 @@ bot.message() do |event|
 	server = event.server
 	serverId = event.server.id
 	time = Time.now
-	time = Time.utc(time.year,time.month,time.day,4,2,0)
+	time = Time.utc(time.year,time.month,time.day,3,2,0)
 
 	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
 	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
