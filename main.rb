@@ -932,7 +932,9 @@ bot.command :time do |event|
 end
 
 def TimerEvent(channel,message,remainingTime,event)
-	history = event.channel.history(50)
+	channels = event.server.channels
+	kuupingChannel = channels.detect{|c| c.id == channel}
+	history = kuupingChannel.history(50)
 	roles = event.server.roles
 	count = history.count{|hMessage| hMessage.content.include? message}
 	case count
@@ -972,28 +974,27 @@ bot.message() do |event|
 				TimerEvent('203219283793149952',"Battery condenser recharge 2 ending in!: ",timeCondenser2End - time,event)
 			
 			end
-=begin
+
 		when 308345436760965120
 			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
-				TimerEvent('453754112119668746',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
+				TimerEvent('461665876802797568',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
 
 			elsif time >= timeCondenser1Start and time <= timeCondenser1End and time - timeCondenser1Start <= offset
-				TimerEvent('453754112119668746',"Battery condenser recharge 1 ending in!: ",timeCondenser1End - time,event)
+				TimerEvent('461665876802797568',"Battery condenser recharge 1 ending in!: ",timeCondenser1End - time,event)
 			
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time <= offset
-				TimerEvent('453754112119668746',"Battery condenser recharge 2 ending in: ",timeCondenser2End - time,event)
+				TimerEvent('461665876802797568',"Battery condenser recharge 2 ending in: ",timeCondenser2End - time,event)
 
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End and time - timeCondenser2Start <= offset
-				TimerEvent('453754112119668746',"Battery condenser recharge 2 ending in!: ",timeCondenser2End - time,event)
+				TimerEvent('461665876802797568',"Battery condenser recharge 2 ending in!: ",timeCondenser2End - time,event)
 
 			elsif time >= timeCondenser2End and time <= batteryReset2 and batteryReset2 - time <= offset
-				TimerEvent('453754112119668746',"Battery reset 2 starting in!: ",timeCondenser2End - time,event)
+				TimerEvent('461665876802797568',"Battery reset 2 starting in!: ",batteryReset2 - time,event)
 
 			elsif time >= reset and time <= batteryReset1 and batteryReset1 - time <= offset
-				TimerEvent('453754112119668746',"Battery reset 1 starting in!: ",timeCondenser2End - time,event)
+				TimerEvent('461665876802797568',"Battery reset 1 starting in!: ",batteryReset1 - time,event)
 			
 			end
-=end
 	end
 end
 
