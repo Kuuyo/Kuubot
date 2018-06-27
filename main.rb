@@ -937,7 +937,7 @@ def TimerEvent(channel,message,remainingTime,event)
 	count = history.count{|hMessage| hMessage.content.include? message}
 	case count
 		when 0
-			roles.each{|role| event.bot.send_message(channel,role.mention + message +  Time.at(remainingTime).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
+			roles.each{|role| event.bot.send_message(channel,role.mention + " " + message +  Time.at(remainingTime).utc.strftime("%H:%M:%S")) if role.name === "gflping"}
 	end
 end
 
@@ -946,7 +946,7 @@ bot.message() do |event|
 	server = event.server
 	serverId = event.server.id
 	time = Time.now
-	time = Time.utc(time.year,time.month,time.day,5,56,0)
+	time = Time.utc(time.year,time.month,time.day,4,2,0)
 
 	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
 	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
