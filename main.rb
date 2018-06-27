@@ -972,7 +972,7 @@ bot.message() do |event|
 				TimerEvent('203219283793149952',"Battery condenser recharge 2 ending in!: ",timeCondenser2End - time,event)
 			
 			end
-
+=begin
 		when 308345436760965120
 			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
 				TimerEvent('453754112119668746',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
@@ -993,6 +993,7 @@ bot.message() do |event|
 				TimerEvent('453754112119668746',"Battery reset 1 starting in!: ",timeCondenser2End - time,event)
 			
 			end
+=end
 	end
 end
 
