@@ -960,7 +960,9 @@ bot.message() do |event|
 	
 	case serverId
 		when 203172685449134080
-		event.respond time - timeCondenser1End
+		debug = time - timeCondenser1End
+		debug = debug.to_s
+		event.respond debug
 			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
 				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
 
