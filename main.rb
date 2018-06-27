@@ -961,16 +961,16 @@ bot.message() do |event|
 	case serverId
 		when 203172685449134080
 			if time >= timeCondenser1Start and time <= timeCondenser1End and timeCondenser1End - time <= offset
-				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,roles,history)
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
 
 			elsif time >= timeCondenser1Start and time <= timeCondenser1End and time - timeCondenser1Start <= offset
-				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,roles,history)
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser1End - time,event)
 			
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End and timeCondenser2End - time <= offset
-				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,roles,history)
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,event)
 
 			elsif time >= timeCondenser2Start and time <= timeCondenser2End and time - timeCondenser2Start <= offset
-				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,roles,history)
+				TimerEvent('203219283793149952',"Battery condenser recharge 1 ending in: ",timeCondenser2End - time,event)
 			
 			end
 =begin
