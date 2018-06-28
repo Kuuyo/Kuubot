@@ -935,6 +935,16 @@ def ConvertSecondsToHMS(seconds)
 	Time.at(seconds).utc.strftime("%H:%M:%S")
 end
 
+def FormatTimer(string,message,time,timerTime,closest)
+	if closest
+		string += "**" + message + ConvertSecondsToHMS(timerTime - time) + "**\n"
+	elsif time > timerTime
+		string += "*" + message + ConvertSecondsToHMS(timerTime - time) + "*\n"
+	elsif time <= timerTime
+		string +=  message + ConvertSecondsToHMS(timerTime - time) + "\n"
+	end
+end
+
 
 bot.command :gfltimers do |event|
 	time = Time.now
@@ -947,15 +957,34 @@ bot.command :gfltimers do |event|
 	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
 	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
 
-	string = "**GFL Timers:**\n"
-	string += "Battery condenser 1 starting in: **" + ConvertSecondsToHMS(timeCondenser1Start - time) + "**\n"
-	string += "Battery condenser 1 ending in: **" + ConvertSecondsToHMS(timeCondenser1End - time) + "**\n"
-	string += "Reset in: **" + ConvertSecondsToHMS(reset - time) + "**\n"
-	string += "Battery reset 1 in: **" + ConvertSecondsToHMS(batteryReset1 - time) + "**\n"
-	string += "Battery condenser 2 starting in: **" + ConvertSecondsToHMS(timeCondenser2Start - time) + "**\n"
-	string += "Battery condenser 2 ending in: **" + ConvertSecondsToHMS(timeCondenser2End - time) + "**\n"
-	string += "Battery reset 2 in: **" + ConvertSecondsToHMS(batteryReset2 - time) + "**"
+	time1 = timeCondenser1Start - time
+	time2 = timeCondenser1End - time
+	time3 = reset - time
+	time4 = batteryReset1 - time
+	time5 = timeCondenser2Start - time
+	time6 = timeCondenser2End - time
+	time7 = batteryReset2 - time
 
+	timeArr = [time1,time2,time3,time4,time5,time6,time7]
+	timeArrMin = timeArr.min
+
+	string = "**GFL Timers:**\n"
+	FormatTimer(string,"Battery condenser 1 starting in: ",time,timeCondenser1Start,time1 == timeArrMin)
+	FormatTimer(string,"Battery condenser 1 ending in: ",time,timeCondenser1End,time2 == timeArrMin)
+	FormatTimer(string,"Reset in: ",time,reset,time3 == timeArrMin)
+	FormatTimer(string,"Battery reset 1 in: ",time,batteryReset1,time4 == timeArrMin)
+	FormatTimer(string,"Battery condenser 2 starting in: ",time,timeCondenser2Start,time5 == timeArrMin)
+	FormatTimer(string,"Battery condenser 2 ending in: ",time,timeCondenser2End,time6 == timeArrMin)
+	FormatTimer(string,"Battery reset 2 in: ",time,batteryReset2,time7 == timeArrMin)
+=begin
+	string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
+	string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
+	string += "Reset in: " + ConvertSecondsToHMS(reset - time) + "\n"
+	string += "Battery reset 1 in: " + ConvertSecondsToHMS(batteryReset1 - time) + "\n"
+	string += "Battery condenser 2 starting in: " + ConvertSecondsToHMS(timeCondenser2Start - time) + "\n"
+	string += "Battery condenser 2 ending in: " + ConvertSecondsToHMS(timeCondenser2End - time) + "\n"
+	string += "Battery reset 2 in: " + ConvertSecondsToHMS(batteryReset2 - time)
+=end
 	event.respond string
 end
 
