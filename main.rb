@@ -966,7 +966,7 @@ bot.command :gfltimers do |event|
 	time6 = timeCondenser2End - time
 	time7 = batteryReset2 - time
 
-	timeArr = [time1,time2,time3,time4,time5,time6,time7]
+	timeArr = [time1.abs,time2.abs,time3.abs,time4.abs,time5.abs,time6.abs,time7.abs]
 	timeArrMin = timeArr.min
 
 	string = "**GFL Timers:**\n"
