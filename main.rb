@@ -935,14 +935,15 @@ def ConvertSecondsToHMS(seconds)
 	Time.at(seconds).utc.strftime("%H:%M:%S")
 end
 
-def FormatTimer(string,message,time,timerTime,closest)
+def FormatTimer(message,time,timerTime,closest)
 	if closest
-		string += "**" + message + ConvertSecondsToHMS(timerTime - time) + "**\n"
+		string = "**" + message + ConvertSecondsToHMS(timerTime - time) + "**\n"
 	elsif time > timerTime
-		string += "*" + message + ConvertSecondsToHMS(timerTime - time) + "*\n"
+		string = "*" + message + ConvertSecondsToHMS(timerTime - time) + "*\n"
 	elsif time <= timerTime
-		string +=  message + ConvertSecondsToHMS(timerTime - time) + "\n"
+		string =  message + ConvertSecondsToHMS(timerTime - time) + "\n"
 	end
+	string
 end
 
 
@@ -969,13 +970,13 @@ bot.command :gfltimers do |event|
 	timeArrMin = timeArr.min
 
 	string = "**GFL Timers:**\n"
-	FormatTimer(string,"Battery condenser 1 starting in: ",time,timeCondenser1Start,time1 == timeArrMin)
-	FormatTimer(string,"Battery condenser 1 ending in: ",time,timeCondenser1End,time2 == timeArrMin)
-	FormatTimer(string,"Reset in: ",time,reset,time3 == timeArrMin)
-	FormatTimer(string,"Battery reset 1 in: ",time,batteryReset1,time4 == timeArrMin)
-	FormatTimer(string,"Battery condenser 2 starting in: ",time,timeCondenser2Start,time5 == timeArrMin)
-	FormatTimer(string,"Battery condenser 2 ending in: ",time,timeCondenser2End,time6 == timeArrMin)
-	FormatTimer(string,"Battery reset 2 in: ",time,batteryReset2,time7 == timeArrMin)
+	string += FormatTimer("Battery condenser 1 starting in: ",time,timeCondenser1Start,time1 == timeArrMin)
+	string += FormatTimer("Battery condenser 1 ending in: ",time,timeCondenser1End,time2 == timeArrMin)
+	string += FormatTimer("Reset in: ",time,reset,time3 == timeArrMin)
+	string += FormatTimer("Battery reset 1 in: ",time,batteryReset1,time4 == timeArrMin)
+	string += FormatTimer("Battery condenser 2 starting in: ",time,timeCondenser2Start,time5 == timeArrMin)
+	string += FormatTimer("Battery condenser 2 ending in: ",time,timeCondenser2End,time6 == timeArrMin)
+	string += FormatTimer("Battery reset 2 in: ",time,batteryReset2,time7 == timeArrMin)
 =begin
 	string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
 	string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
