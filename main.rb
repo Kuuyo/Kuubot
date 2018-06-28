@@ -931,6 +931,34 @@ bot.command :time do |event|
 	event.respond time.inspect
 end
 
+def ConvertSecondsToHMS(seconds)
+	Time.at(seconds).utc.strftime("%H:%M:%S"))
+end
+
+
+bot.command :gfltimers do |event|
+	time = Time.now
+
+	timeCondenser1Start = Time.utc(time.year,time.month,time.day,3,0,0)
+	timeCondenser1End = Time.utc(time.year,time.month,time.day,6,0,0)
+	reset = Time.utc(time.year,time.month,time.day,8,0,0)
+	batteryReset1 = Time.utc(time.year,time.month,time.day,11,0,0)
+	timeCondenser2Start = Time.utc(time.year,time.month,time.day,19,0,0)
+	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
+	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
+
+	string = "GFL Timers:\n"
+	string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
+	string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
+	string += "Reset in: " + ConvertSecondsToHMS(reset - time) + "\n"
+	string += "Battery reset 1 in: " + ConvertSecondsToHMS(batteryReset1 - time) + "\n"
+	string += "Battery condenser 2 starting in: " + ConvertSecondsToHMS(timeCondenser2Start - time) + "\n"
+	string += "Battery condenser 2 ending in: " + ConvertSecondsToHMS(timeCondenser2End - time) + "\n"
+	string += "Battery reset 2 in: " + ConvertSecondsToHMS(batteryReset2 - time)
+
+	event.respond string
+end
+
 def TimerEvent(channel,message,remainingTime,event)
 	channels = event.server.channels
 	kuupingChannel = channels.detect{|c| c.id === channel.to_i}
