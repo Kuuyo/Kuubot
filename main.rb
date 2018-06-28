@@ -926,9 +926,14 @@ bot.command :dance, description:"Dance", usage:"!dance" do |event|
 	event.respond "No."
 end
 
-bot.command :time do |event|
+bot.command :time do |event,target|
 	time = Time.now
-	event.respond time.inspect
+
+	if target != nil
+		time.in_time_zone(target)
+	end
+	
+	event.respond time.strftime("%a-%b  %H:%M:%S") + " " + target
 end
 
 def ConvertSecondsToHMS(seconds)
