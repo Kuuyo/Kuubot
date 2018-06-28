@@ -931,9 +931,9 @@ bot.command :time, description:"Displays time (standard is UTC)" do |event,targe
 	time = Time.now
 	if target != nil
 		time.in_time_zone(target)
-		event.respond time.strftime("%a-%b  %H:%M:%S") + " " + target
+		event.respond time.strftime("%d-%b  %H:%M:%S") + " " + target
 	else
-		event.respond time.strftime("%a-%b  %H:%M:%S") + " UTC"
+		event.respond time.strftime("%d-%b  %H:%M:%S") + " UTC"
 	end
 end
 
@@ -976,13 +976,13 @@ bot.command :gfltimers do |event|
 	timeArrMin = timeArr.min
 
 	string = "**GFL Timers:**\n"
-	string += FormatTimer("Battery condenser 1 starting in: ",time,timeCondenser1Start,time1 == timeArrMin)
-	string += FormatTimer("Battery condenser 1 ending in: ",time,timeCondenser1End,time2 == timeArrMin)
-	string += FormatTimer("Reset in: ",time,reset,time3 == timeArrMin)
-	string += FormatTimer("Battery reset 1 in: ",time,batteryReset1,time4 == timeArrMin)
-	string += FormatTimer("Battery condenser 2 starting in: ",time,timeCondenser2Start,time5 == timeArrMin)
-	string += FormatTimer("Battery condenser 2 ending in: ",time,timeCondenser2End,time6 == timeArrMin)
-	string += FormatTimer("Battery reset 2 in: ",time,batteryReset2,time7 == timeArrMin)
+	string += FormatTimer("Battery condenser 1 starting in: ",time,timeCondenser1Start,time1.abs == timeArrMin)
+	string += FormatTimer("Battery condenser 1 ending in: ",time,timeCondenser1End,time2.abs == timeArrMin)
+	string += FormatTimer("Reset in: ",time,reset,time3.abs == timeArrMin)
+	string += FormatTimer("Battery reset 1 in: ",time,batteryReset1,time4.abs == timeArrMin)
+	string += FormatTimer("Battery condenser 2 starting in: ",time,timeCondenser2Start,time5.abs == timeArrMin)
+	string += FormatTimer("Battery condenser 2 ending in: ",time,timeCondenser2End,time6.abs == timeArrMin)
+	string += FormatTimer("Battery reset 2 in: ",time,batteryReset2,time7.abs == timeArrMin)
 =begin
 	string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
 	string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
