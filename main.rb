@@ -932,7 +932,7 @@ bot.command :time do |event|
 end
 
 def ConvertSecondsToHMS(seconds)
-	Time.at(seconds).utc.strftime("%H:%M:%S"))
+	Time.at(seconds).utc.strftime("%H:%M:%S")
 end
 
 
