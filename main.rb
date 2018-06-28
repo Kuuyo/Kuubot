@@ -926,14 +926,14 @@ bot.command :dance, description:"Dance", usage:"!dance" do |event|
 	event.respond "No."
 end
 
-bot.command :time do |event,target|
+bot.command :time, description:"Displays time (standard is UTC)" do |event,target|
 	time = Time.now
-
 	if target != nil
 		time.in_time_zone(target)
+		event.respond time.strftime("%a-%b  %H:%M:%S") + " " + target
+	else
+		event.respond time.strftime("%a-%b  %H:%M:%S") + " UTC"
 	end
-	
-	event.respond time.strftime("%a-%b  %H:%M:%S") + " " + target
 end
 
 def ConvertSecondsToHMS(seconds)
