@@ -947,14 +947,14 @@ bot.command :gfltimers do |event|
 	timeCondenser2End = Time.utc(time.year,time.month,time.day,22,0,0)
 	batteryReset2 = Time.utc(time.year,time.month,time.day,23,0,0)
 
-	string = "GFL Timers:\n"
-	string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
-	string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
-	string += "Reset in: " + ConvertSecondsToHMS(reset - time) + "\n"
-	string += "Battery reset 1 in: " + ConvertSecondsToHMS(batteryReset1 - time) + "\n"
-	string += "Battery condenser 2 starting in: " + ConvertSecondsToHMS(timeCondenser2Start - time) + "\n"
-	string += "Battery condenser 2 ending in: " + ConvertSecondsToHMS(timeCondenser2End - time) + "\n"
-	string += "Battery reset 2 in: " + ConvertSecondsToHMS(batteryReset2 - time)
+	string = "**GFL Timers:**\n"
+	string += "Battery condenser 1 starting in: **" + ConvertSecondsToHMS(timeCondenser1Start - time) + "**\n"
+	string += "Battery condenser 1 ending in: **" + ConvertSecondsToHMS(timeCondenser1End - time) + "**\n"
+	string += "Reset in: **" + ConvertSecondsToHMS(reset - time) + "**\n"
+	string += "Battery reset 1 in: **" + ConvertSecondsToHMS(batteryReset1 - time) + "**\n"
+	string += "Battery condenser 2 starting in: **" + ConvertSecondsToHMS(timeCondenser2Start - time) + "**\n"
+	string += "Battery condenser 2 ending in: **" + ConvertSecondsToHMS(timeCondenser2End - time) + "**\n"
+	string += "Battery reset 2 in: **" + ConvertSecondsToHMS(batteryReset2 - time) + "**"
 
 	event.respond string
 end
