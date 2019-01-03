@@ -87,6 +87,8 @@ bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE
 			else
 				event.respond 'Yes'
 			end
+		elsif content.include?("no") || content.include?("not") || content.include?("zero")
+			event.respond 'Yes'
 		else
 			event.respond 'No'
 		end
