@@ -914,6 +914,11 @@ bot.command :miku, description:"b('-'", usage:"When you need to b('-' someone" d
 	event.channel.send_file File.new(dir)
 end
 
+bot.command :out, description:"Respect the channels please", usage:"When going too far off-topic" do |event|
+	dir = 'images/general.png'
+	event.channel.send_file File.new(dir)
+end
+
 =begin
 bot.command :mh, description:"Kiranico mhgen database", usage:"!mh [item/monster] spec \n Spaces for specification are replaced by -" do |event, type, spec|
 	case type
