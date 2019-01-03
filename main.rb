@@ -78,8 +78,29 @@ bot.mention do |event|
 	end
 end
 
-bot.message(containing: Regexp.new(Regexp.escape("Should I buy"), Regexp::IGNORECASE)) do |event|
-	event.respond 'No'
+bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE)) do |event|
+	content = event.message.content
+	if content.include? Regexp.new(Regexp.escape("buy"), Regexp::IGNORECASE)
+		if content.include? Regexp.new(Regexp.escape("food"), Regexp::IGNORECASE)
+			event.respond 'Yes'
+		else
+			event.respond 'No'
+		end
+	else
+		number = rand(1..5)
+		case number
+			when 1
+				event.respond 'Yes'
+			when 2
+				event.respond 'Maybe'
+			when 3
+				event.respond 'No'
+			when 4
+				event.respond 'I\'m not sure.'
+			else
+				event.respond 'Probably not'
+		end
+	end
 end
 
 bot.message(containing: Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)) do |event|
