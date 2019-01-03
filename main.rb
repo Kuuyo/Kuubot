@@ -810,6 +810,10 @@ bot.command :remrole, description:"Removes a role" do |event,rrole|
 	end
 end
 
+bot.command :roles, description:"Lists addable/removable roles" do |event|
+	event.respond availableRoles.join(' | ')
+end
+
 bot.command :toko, description:"Lecia sticker", usage:"Don't 'use' Toko, Toko is nice and ready to help" do |event|
 	dir = 'images/toko.png'
 	event.channel.send_file File.new(dir)
