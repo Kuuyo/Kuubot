@@ -754,12 +754,6 @@ blockedRoles = [
 ]
 
 availableRoles = [
-	'tia',
-	'levi',
-	'ygg',
-	'colo',
-	'chev',
-	'celeste',
 	'thbot',
 	'slime',
 	'6man',
