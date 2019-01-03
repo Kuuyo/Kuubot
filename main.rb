@@ -82,14 +82,10 @@ bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE
 	content = event.message.content.downcase
 	if content.include? "buy"
 		if content.include? "food"
-			if content.include? "no"
+			if content.include? "no" || content.include? "not" || content.include? "zero"
 				event.respond 'No, buy food'
 			else
-				if content.include? "not"
-					event.respond 'No, buy food'
-				else
-					event.respond 'Yes'
-				end
+				event.respond 'Yes'
 			end
 		else
 			event.respond 'No'
