@@ -78,6 +78,10 @@ bot.mention do |event|
 	end
 end
 
+bot.message(containing: Regexp.new(Regexp.escape("Should I buy"), Regexp::IGNORECASE)) do |event|
+	event.respond 'No'
+end
+
 bot.message(containing: Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
 	case user
