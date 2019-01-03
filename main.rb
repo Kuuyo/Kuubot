@@ -2,7 +2,7 @@
 require 'discordrb'
 require 'active_support/all'
 
-bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], ENV['APPID'], prefix: "!"
+bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
 
 =begin
 !baka
