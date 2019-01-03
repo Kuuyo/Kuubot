@@ -79,10 +79,18 @@ bot.mention do |event|
 end
 
 bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE)) do |event|
-	content = event.message.content
-	if content.downcase.include? "buy"
-		if content.downcase.include? "food"
-			event.respond 'Yes'
+	content = event.message.content.downcase
+	if content.include? "buy"
+		if content.include? "food"
+			if content.include? "no"
+				event.respond 'No'
+			else
+				if content.include? "not"
+				event.respond 'No'
+			else
+				event.respond 'Yes'
+			end
+			end
 		else
 			event.respond 'No'
 		end
