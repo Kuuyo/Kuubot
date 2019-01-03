@@ -773,7 +773,17 @@ availableRoles = [
 	'angelframboss',
 	'coop',
 	'thor',
-	'gflping'
+	'gflping',
+	'shiba',
+	'chuunibyou',
+	'europa is super cute',
+	'alexiel',
+	'megatron',
+	'avatar',
+	'18man',
+	'akasha',
+	'primarch',
+	'tiamalice'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,arole|
