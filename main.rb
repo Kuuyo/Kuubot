@@ -92,6 +92,12 @@ bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE
 		else
 			event.respond 'No'
 		end
+	elsif content.include?("jump off a bridge")  || content.include?("kill") || content.include?("kms")
+		if content.include?("not")
+			event.respond 'Yes'
+		else
+			event.respond 'Heck no.'
+		end
 	else
 		number = rand(1..5)
 		case number
