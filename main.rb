@@ -1004,13 +1004,11 @@ bot.command :connect, description:"Connects Kuubot to the voice channel", usage:
 	end
 end
 
-BASE_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&fields=items%2Fid&key=#{ENV['YOUTUBEKEY']}"
-
 bot.command :play, "!play [youtube url] or !play [search something]": yt_usage, description: "Plays a youtube video", min_args: 1 do |event, *songlink|
 
 	unless songlink =~ /((http:[s]?\/\/)+youtube\.com|youtu.be)/i
 		  query = URI.encode(songlink.join(' '))
-		  apijson = open(BASE_URL + "&q=#{query}")
+		  apijson = open("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&fields=items%2Fid&key=#{ENV['YOUTUBEKEY']}" + "&q=#{query}")
 		  response = JSON.parse(apijson.read)
 		  event.respond 'I could not find anything.' if response.empty?
 		  break if response.empty?
