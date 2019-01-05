@@ -1044,6 +1044,7 @@ end
 
 bot.command(:stop, description: stop_desc) do |event|
 	  event.voice.stop_playing
+	  bot.voices[event.server.id].destroy
 	  return nil
 end
 
