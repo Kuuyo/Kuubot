@@ -1,6 +1,7 @@
 #::RBNACL_LIBSODIUM_GEM_LIB_PATH = "C:/libsodium.dll"
 require 'discordrb'
 require 'active_support/all'
+require 'open-uri'
 
 bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
 
