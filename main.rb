@@ -1032,6 +1032,22 @@ bot.command :play, description: "Plays a youtube video", usage:"!play [youtube u
 	event.respond "Join a voice channel first."
 end
 
+bot.command :playtest, description: "Plays a youtube video", usage:"!play [youtube url] or !play [search something]", min_args: 1 do |event, *songlink|
+	unless event.voice.nil?
+		  event.respond 'Already playing music.'
+		  break
+	end
+	channel = event.user.voice_channel
+	unless channel.nil?
+		  voice_bot = event.bot.voice_connect(channel)
+		  voice_bot.play_file("Levitate.mp3")
+		  voice_bot.destroy
+		  break
+	end
+
+	event.respond "Join a voice channel first."
+end
+
 bot.command :stop, description: "Stop playback", usage: "!stop" do |event|
 	  event.voice.stop_playing
 	  bot.voices[event.server.id].destroy
