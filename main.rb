@@ -80,37 +80,53 @@ end
 
 bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE)) do |event|
 	content = event.message.content.downcase
-	if content.include? "buy"
-		if content.include? "food"
-			if content.include?("no") || content.include?("not") || content.include?("zero") || content.include?("spark")
-				event.respond 'No, buy food'
-			else
-				event.respond 'Yes'
-			end
-		elsif content.include?("no") || content.include?("not") || content.include?("zero")
-			event.respond 'Yes'
-		else
-			event.respond 'No'
-		end
-	elsif content.include?("jump off a bridge")  || content.include?("kill") || content.include?("kms")
-		if content.include?("not")
-			event.respond 'Yes'
-		else
-			event.respond 'Heck no.'
-		end
+	if content.include?("and") || content.include?("or")
+		event.respond 'One question at a time please.'
 	else
-		number = rand(1..5)
-		case number
-			when 1
+		if content.include?("steal")
+			event.respond 'No stealing.'
+		elsif content.include?("not")
+			event.respond 'Yes'
+		else
+			if content.include?("go to bed") || content.include?("go to sleep") || content.include?("go to sleep")
 				event.respond 'Yes'
-			when 2
-				event.respond 'Maybe'
-			when 3
+			elsif content.include?("not")
 				event.respond 'No'
-			when 4
-				event.respond 'I\'m not sure.'
 			else
-				event.respond 'Probably not'
+				if content.include?("buy") || content.include?("spend")
+					if content.include? "food"
+						if content.include?("no") || content.include?("not") || content.include?("zero") || content.include?("spark") || content.include?("gacha") || content.include?("outfit") || content.include?("skins")
+							event.respond 'No, buy food'
+						else
+							event.respond 'Yes, buy food'
+						end
+					elsif content.include?("no") || content.include?("not") || content.include?("zero")
+						event.respond 'Yes'
+					else
+						event.respond 'No'
+					end
+				elsif content.include?("jump off a bridge")  || content.include?("kill") || content.include?("kms") || content.include?("get rid of myself")
+					if content.include?("not")
+						event.respond 'Yes'
+					else
+						event.respond 'Heck no.'
+					end
+				else
+					number = rand(1..5)
+					case number
+						when 1
+							event.respond 'Yes'
+						when 2
+							event.respond 'Maybe'
+						when 3
+							event.respond 'No'
+						when 4
+							event.respond 'I\'m not sure.'
+						else
+							event.respond 'Probably not'
+					end
+				end
+			end
 		end
 	end
 end
