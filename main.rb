@@ -1004,7 +1004,7 @@ bot.command :connect, description:"Connects Kuubot to the voice channel", usage:
 	end
 end
 
-bot.command :play, "!play [youtube url] or !play [search something]": yt_usage, description: "Plays a youtube video", min_args: 1 do |event, *songlink|
+bot.command :play, description: "Plays a youtube video", usage:"!play [youtube url] or !play [search something]", min_args: 1 do |event, *songlink|
 
 	unless songlink =~ /((http:[s]?\/\/)+youtube\.com|youtu.be)/i
 		  query = URI.encode(songlink.join(' '))
@@ -1032,7 +1032,7 @@ bot.command :play, "!play [youtube url] or !play [search something]": yt_usage, 
 	event.respond "Join a voice channel first."
 end
 
-bot.command :stop, description: "Stop playback" do |event|
+bot.command :stop, description: "Stop playback", usage: "!stop" do |event|
 	  event.voice.stop_playing
 	  bot.voices[event.server.id].destroy
 end
