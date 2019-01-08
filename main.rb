@@ -834,7 +834,7 @@ availableRoles = [
 	'tiamalice'
 ]
 
-bot.command :addrole, description:"Adds a role" do |event,arole|
+bot.command :addrole, description:"Adds a role" do |event,*arole|
 	roleToAdd = event.server.roles.find {|role| role.name == arole}
 	if availableRoles.include? arole
 		event.user.add_role(roleToAdd)
@@ -846,7 +846,7 @@ bot.command :addrole, description:"Adds a role" do |event,arole|
 	end
 end
 
-bot.command :remrole, description:"Removes a role" do |event,rrole|
+bot.command :remrole, description:"Removes a role" do |event,*rrole|
 	roleToRemove = event.server.roles.find {|role| role.name == rrole}
 	if availableRoles.include? rrole
 		event.user.remove_role(roleToRemove)
