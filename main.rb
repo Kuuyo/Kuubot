@@ -79,7 +79,7 @@ bot.mention do |event|
 	end
 end
 
-bot.message(containing: Regexp.new(Regexp.escape("Should I"), Regexp::IGNORECASE)) do |event|
+bot.message(containing: Regexp.new(Regexp.escape("Should "), Regexp::IGNORECASE)) do |event|
 	content = event.message.content.downcase
 	if content.include?(" and ") || content.include?(" or ")
 		event.respond 'One question at a time please.'
