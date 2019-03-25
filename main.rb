@@ -113,7 +113,7 @@ bot.message(containing: Regexp.new(Regexp.escape("Should "), Regexp::IGNORECASE)
 						event.respond 'Heck no.'
 					end
 				else
-					number = rand(1..5)
+					number = rand(1..6)
 					case number
 						when 1
 							event.respond 'Yes'
@@ -123,6 +123,8 @@ bot.message(containing: Regexp.new(Regexp.escape("Should "), Regexp::IGNORECASE)
 							event.respond 'No'
 						when 4
 							event.respond 'I\'m not sure.'
+						when 5
+							event.respond 'Little yes.'
 						else
 							event.respond 'Probably not'
 					end
