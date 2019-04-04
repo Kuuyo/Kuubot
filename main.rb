@@ -39,9 +39,9 @@ if latestChange != $previousChange
 			user = latestChange.first['user']
 				case user
 					when 'jlommaert'
-						icon = ''
-					when 'zlazou'
 						icon = ENV['JLICON']
+					when 'zlazou'
+						icon = ENV['ZLICON']
 					when 'eannys'
 						icon = ENV['EAICON']
 					when 'rvandijk'
