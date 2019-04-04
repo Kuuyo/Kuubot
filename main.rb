@@ -36,7 +36,7 @@ if latestChange != $previousChange
 	client.execute do |builder|
 		builder.content = 'Perforce change:'
 		builder.add_embed do |embed|
-			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: latestChange['user'], url: '', icon_url: 'https://cdn.discordapp.com/embed/avatars/0.png')
+			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: latestChange.first['user'], url: '', icon_url: 'https://cdn.discordapp.com/embed/avatars/0.png')
 =begin
 			embed.title = latestChange._description
 			embed.description = 'Embed description'
