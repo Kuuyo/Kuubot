@@ -69,6 +69,7 @@ if latestChange != $previousChange
 end
 =end
 
+bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
 bot.command :testdesu, description:"Welcome new people", usage:"Welcoming new people" do |event|
@@ -118,7 +119,7 @@ then with that source find the og:image meta tag
 Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
 =end
 
-bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
+
 
 bot.message(containing: Regexp.new(Regexp.escape("*Slaps Kuubot*"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
