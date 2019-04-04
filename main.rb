@@ -34,7 +34,7 @@ client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
 if latestChange != $previousChange
 	client.execute do |builder|
-		builder.content = 'Perforce change:'
+		builder.content = 'Perforce change ' + latestChange.first['change']
 		builder.add_embed do |embed|
 			user = latestChange.first['user']
 				case user
