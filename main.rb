@@ -10,28 +10,28 @@ p4.password = ENV['P4PASSWORD']
 p4.port = ENV['P4PORT']
 p4.user = ENV['P4USER']
 
-CHANGESPEC = \
-    "Change:	new
-	Client:	client
-	Date:	2012/01/01 00:00:00
-	User:	user
-	Status:	new
-	Type:	restricted
-	JobStatus:	open
-	Jobs:	job000001
-	        job000002
-	Description:
-	        <enter description here>
-	 
-	Files:
-	        //depot/filea
-	        //depot/fileb"
+begin
+	p4.connect
+	  CHANGESPEC = \
+      "Change:	new
+Client:	jmistry_mac_p4ruby
+Date:	2012/01/01 00:00:00
+User:	jmistry
+Status:	new
+Type:	restricted
+JobStatus:	open
+Jobs:	job000001
+        job000002
+Description:
+        <enter description here>
+ 
+Files:
+        //depot/filea
+        //depot/fileb"
 
 latestChange = p4.parse_change( CHANGESPEC );
 previousChange = latestChange;
 
-begin
-	p4.connect
 	latestChange = p4.fetch_change
 
 rescue P4Exception => msg
