@@ -48,7 +48,7 @@ end
 
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
-if latestChange != previousChange
+if latestChange != $previousChange
 	client.execute do |builder|
 		builder.content = 'Perforce change:'
 		builder.add_embed do |embed|
@@ -62,7 +62,7 @@ if latestChange != previousChange
 			embed.add_field(name: 'Files:', value: latestChange._files)
 		end
 	end
-	previousChange = latestChange
+	$previousChange = latestChange
 end
 
 =begin
