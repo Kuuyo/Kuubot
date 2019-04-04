@@ -6,6 +6,8 @@ require 'open-uri'
 
 require 'P4'
 
+$previousChange = nil
+
 p4 = P4.new
 p4.password = ENV['P4PASSWORD']
 p4.port = ENV['P4PORT']
@@ -35,7 +37,6 @@ Files:
         //depot/fileb"
 
 	latestChange = p4.parse_change( CHANGESPEC );
-	previousChange = latestChange;
 
 	latestChange = p4.fetch_change
 
