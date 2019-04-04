@@ -11,6 +11,7 @@ p4.password = ENV['P4PASSWORD']
 p4.port = ENV['P4PORT']
 p4.user = ENV['P4USER']
 p4.client = ENV['P4CLIENT']
+p4.host = ENV['P4HOST']
 
 begin
 	p4.connect
