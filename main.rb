@@ -29,7 +29,7 @@ rescue P4Exception => msg
 	  p4.errors.each { |e| puts( e ) }
 end
 
-=begin
+
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
 if latestChange != $previousChange
@@ -37,6 +37,7 @@ if latestChange != $previousChange
 		builder.content = 'Perforce change:'
 		builder.add_embed do |embed|
 			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: latestChange._user, url: '', icon_url: 'https://cdn.discordapp.com/embed/avatars/0.png')
+=begin
 			embed.title = latestChange._description
 			# embed.description = 'Embed description'
 			embed.timestamp = latestChange._date
@@ -44,13 +45,16 @@ if latestChange != $previousChange
 			# embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://i.imgur.com/PcMltU7.jpg')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
 			embed.add_field(name: 'Files:', value: latestChange._files)
+=end
 		end
 	end
 	$previousChange = latestChange
 end
-=end
+
 
 bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
+
+=begin
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
 bot.command :testdesu, description:"Welcome new people", usage:"Welcoming new people" do |event|
@@ -63,6 +67,7 @@ bot.command :testdesu, description:"Welcome new people", usage:"Welcoming new pe
 	  end
 	end
 end
+=end
 
 =begin
 !baka
