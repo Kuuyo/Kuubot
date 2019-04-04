@@ -19,26 +19,7 @@ begin
 	p4.connect
 	p4.run_login
 
-	  CHANGESPEC = \
-      "Change:	new
-Client:	jmistry_mac_p4ruby
-Date:	2012/01/01 00:00:00
-User:	jmistry
-Status:	new
-Type:	restricted
-JobStatus:	open
-Jobs:	job000001
-        job000002
-Description:
-        <enter description here>
- 
-Files:
-        //depot/filea
-        //depot/fileb"
-
-	latestChange = p4.parse_change( CHANGESPEC );
-
-	latestChange = p4.fetch_change
+	latestChange = p4.run_changes("-m", "1", "-s", "submitted")
 
 	puts(latestChange)
 
