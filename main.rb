@@ -36,13 +36,13 @@ if latestChange != $previousChange
 	client.execute do |builder|
 		builder.content = 'Perforce change:'
 		builder.add_embed do |embed|
-			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: latestChange._user, url: '', icon_url: 'https://cdn.discordapp.com/embed/avatars/0.png')
+			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: latestChange['User'], url: '', icon_url: 'https://cdn.discordapp.com/embed/avatars/0.png')
 =begin
 			embed.title = latestChange._description
-			# embed.description = 'Embed description'
+			embed.description = 'Embed description'
 			embed.timestamp = latestChange._date
-			# embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Hello', icon_url: 'https://i.imgur.com/j69wMDu.jpg')
-			# embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://i.imgur.com/PcMltU7.jpg')
+			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Hello', icon_url: 'https://i.imgur.com/j69wMDu.jpg')
+			embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://i.imgur.com/PcMltU7.jpg')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
 			embed.add_field(name: 'Files:', value: latestChange._files)
 =end
