@@ -15,6 +15,7 @@ p4.host = ENV['P4HOST']
 
 begin
 	p4.connect
+	p4.run_login
 
 	  CHANGESPEC = \
       "Change:	new
