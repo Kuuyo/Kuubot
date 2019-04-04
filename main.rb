@@ -40,12 +40,15 @@ Files:
 
 	latestChange = p4.fetch_change
 
+	puts(latestChange)
+
 rescue P4Exception => msg
 	  puts( msg )
 	  p4.warnings.each { |w| puts( w ) }
 	  p4.errors.each { |e| puts( e ) }
 end
 
+=begin
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
 if latestChange != $previousChange
@@ -63,6 +66,20 @@ if latestChange != $previousChange
 		end
 	end
 	$previousChange = latestChange
+end
+=end
+
+client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
+
+bot.command :testdesu, description:"Welcome new people", usage:"Welcoming new people" do |event|
+	client.execute do |builder|
+	  builder.content = 'Hello world!'
+	  builder.add_embed do |embed|
+	    embed.title = 'Embed title'
+	    embed.description = 'Embed description'
+	    embed.timestamp = Time.now
+	  end
+	end
 end
 
 =begin
