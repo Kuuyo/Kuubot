@@ -12,6 +12,23 @@ p4.user = ENV['P4USER']
 
 begin
 	p4.connect
+
+	# Run a "p4 client -t template -o" and convert it into a Ruby hash
+    spec = p4.fetch_client( "-t", ENV['P4TEMPLATE'], "heroku_bot")
+
+    # Now edit the fields in the form
+    # spec[ "Root" ]  = client_root
+    # spec[ "Options" ] = spec[ "Options" ].sub( "normdir", "rmdir" )
+
+    # Now save the updated spec
+    p4.save_client( spec )
+
+    # Point to the newly-created client
+    p4.client = "heroku_bot"
+
+    # And sync it.
+    p4.run_sync
+
 	  CHANGESPEC = \
       "Change:	new
 Client:	jmistry_mac_p4ruby
@@ -29,8 +46,8 @@ Files:
         //depot/filea
         //depot/fileb"
 
-latestChange = p4.parse_change( CHANGESPEC );
-previousChange = latestChange;
+	latestChange = p4.parse_change( CHANGESPEC );
+	previousChange = latestChange;
 
 	latestChange = p4.fetch_change
 
@@ -38,7 +55,6 @@ rescue P4Exception => msg
 	  puts( msg )
 	  p4.warnings.each { |w| puts( w ) }
 	  p4.errors.each { |e| puts( e ) }
-	  p4.output.each { |o| puts( o ) }
 end
 
 client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
