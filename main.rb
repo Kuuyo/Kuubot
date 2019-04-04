@@ -3,7 +3,37 @@ require 'discordrb'
 require 'active_support/all'
 require 'open-uri'
 
-bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
+require 'P4'
+
+p4 = P4.new
+p4.password = ENV['P4PASSWORD']
+p4.port = ENV['P4PORT']
+p4.user = ENV['P4USER']
+
+begin
+	p4.connect
+
+rescue P4Exception => msg
+	  puts( msg )
+	  p4.warnings.each { |w| puts( w ) }
+	  p4.errors.each { |e| puts( e ) }
+	  p4.output.each { |o| puts( o ) }
+end
+
+=begin
+client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
+
+if
+	client.execute do |builder|
+	  builder.content = 'Hello world!'
+	  builder.add_embed do |embed|
+	    embed.title = 'Embed title'
+	    embed.description = 'Embed description'
+	    embed.timestamp = Time.now
+	  end
+	end
+end
+=end
 
 =begin
 !baka
@@ -40,6 +70,8 @@ then with that source find the og:image meta tag
 182909161833627648 Mimi
 Regexp.new(Regexp.escape("Kuubot shield"), Regexp::IGNORECASE)
 =end
+
+bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
 
 bot.message(containing: Regexp.new(Regexp.escape("*Slaps Kuubot*"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
