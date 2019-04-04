@@ -1,5 +1,6 @@
 #::RBNACL_LIBSODIUM_GEM_LIB_PATH = "C:/libsodium.dll"
 require 'discordrb'
+require 'discordrb/webhooks'
 require 'active_support/all'
 require 'open-uri'
 
@@ -9,25 +10,10 @@ p4 = P4.new
 p4.password = ENV['P4PASSWORD']
 p4.port = ENV['P4PORT']
 p4.user = ENV['P4USER']
+p4.client = ENV['P4CLIENT']
 
 begin
 	p4.connect
-
-	# Run a "p4 client -t template -o" and convert it into a Ruby hash
-    spec = p4.fetch_client( "-t", ENV['P4TEMPLATE'], "heroku_bot")
-
-    # Now edit the fields in the form
-    # spec[ "Root" ]  = client_root
-    # spec[ "Options" ] = spec[ "Options" ].sub( "normdir", "rmdir" )
-
-    # Now save the updated spec
-    p4.save_client( spec )
-
-    # Point to the newly-created client
-    p4.client = "heroku_bot"
-
-    # And sync it.
-    p4.run_sync
 
 	  CHANGESPEC = \
       "Change:	new
