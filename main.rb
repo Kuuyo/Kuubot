@@ -1050,11 +1050,9 @@ p4.run_login
 
 Branch.new do
   branch
-	{
-	Timeloop.every 10.seconds do
+	{Timeloop.every 10.seconds do
 		puts '10 seconds delay'
-	end
-	}
+	end}
 end
 #
 #
