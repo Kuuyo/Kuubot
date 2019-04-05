@@ -1034,7 +1034,7 @@ bot.message() do |event|
 	end
 end
 
-bot.run
+
 
 puts('Hello')
 
@@ -1122,7 +1122,7 @@ end
 
 secondly_loop {perforce_discord_webhook}
 
-
+bot.run
 
 
 
