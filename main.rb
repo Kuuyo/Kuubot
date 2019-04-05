@@ -20,8 +20,10 @@ begin
 	p4.run_login
 
 	latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
+	descriptionOfChange = p4.run_describe(latestChange.first['change'])
 
 	puts(latestChange)
+	puts(descriptionOfChange)
 
 rescue P4Exception => msg
 	  puts( msg )
