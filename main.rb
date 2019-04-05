@@ -60,9 +60,9 @@ if latestChange != $previousChange
 			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
-			embed.add_field(name: 'Files:', value: '')
+			#embed.add_field(name: 'Files:', value: '')
 			while descriptionOfChange.first['depotFile'].length > 0 do
-				embed.add_field(name: '', value: descriptionOfChange.first['depotFile'].shift)
+				embed.add_field(name: 'File:', value: descriptionOfChange.first['depotFile'].shift)
 			end
 		end
 	end
