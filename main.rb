@@ -5,6 +5,39 @@ require 'active_support/all'
 require 'open-uri'
 require 'timeloop'
 
+# (c) lolmaus (Andrey Mikhaylov), 2014
+# MIT license http://choosealicense.com/licenses/mit/
+
+class Branch
+  def initialize(mutexes = 0, &block)
+    @threads = []
+    @mutexes = Hash.new { |hash, key| hash[key] = Mutex.new }
+
+    # Executing the passed block within the context
+    # of this class' instance.
+    instance_eval &block
+
+    # Waiting for all threads to finish
+    @threads.each { |thr| thr.join }
+  end
+
+  # This method will be available within a block
+  # passed to `Branch.new`.
+  def branch(delay = false, &block)
+
+    # Starting a new thread 
+    @threads << Thread.new do
+
+      # Implementing the timeout functionality
+      sleep delay if delay.is_a? Numeric
+
+      # Executing the block passed to `branch`,
+      # providing mutexes into the block.
+      block.call @mutexes
+    end
+  end
+end
+
 require 'P4'
 
 $previousChange = nil
