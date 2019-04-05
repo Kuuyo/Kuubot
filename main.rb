@@ -64,7 +64,7 @@ begin
 				end
 				$previousChange = latestChange
 			end
-		sleep 30
+		end
 	end
 
 rescue P4Exception => msg
