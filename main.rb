@@ -61,9 +61,7 @@ if latestChange != $previousChange
 			#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.add_field(name: 'Files:', value: '')
-			while descriptionOfChange.first['depotFile'].length > 0 do
-				embed.add_field(name: 'File:', value: descriptionOfChange.first['depotFile'].shift)
-			end
+			descriptionOfChange.first['depotFile'].each {|file| embed.add_field(name: descriptionOfChange.first['action'].shift, value: file}
 		end
 	end
 	$previousChange = latestChange
