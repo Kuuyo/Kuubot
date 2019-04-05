@@ -55,13 +55,16 @@ if latestChange != $previousChange
 				end
 			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
 			embed.title = latestChange.first['desc']
+			embed.url = env['EMBEDURL']
 			embed.description = latestChange.first['path']
 			embed.timestamp = Time.now
 			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.add_field(name: 'Files:', value: '')
-			descriptionOfChange.first['depotFile'].each {|file| embed.add_field(name: descriptionOfChange.first['action'].shift, value: file)}
+			descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
+			name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
+			value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
 		end
 	end
 	$previousChange = latestChange
