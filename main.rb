@@ -55,7 +55,7 @@ if latestChange != $previousChange
 				end
 			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
 			embed.title = latestChange.first['desc']
-			embed.url = env['EMBEDURL']
+			embed.url = ENV['EMBEDURL']
 			embed.description = latestChange.first['path']
 			embed.timestamp = Time.now
 			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
