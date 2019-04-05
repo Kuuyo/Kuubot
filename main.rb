@@ -1040,16 +1040,6 @@ puts('Hello')
 
 $previousChange = nil
 
-p4 = P4.new
-p4.password = ENV['P4PASSWORD']
-p4.port = ENV['P4PORT']
-p4.user = ENV['P4USER']
-p4.client = ENV['P4CLIENT']
-p4.host = ENV['P4HOST']
-
-p4.connect
-p4.run_login
-
 def secondly_loop
     last = Time.now
     while true
@@ -1071,6 +1061,16 @@ end
 
 
 def perforce_discord_webhook
+	p4 = P4.new
+	p4.password = ENV['P4PASSWORD']
+	p4.port = ENV['P4PORT']
+	p4.user = ENV['P4USER']
+	p4.client = ENV['P4CLIENT']
+	p4.host = ENV['P4HOST']
+	
+	p4.connect
+	p4.run_login
+
 	latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 	descriptionOfChange = p4.run_describe(latestChange.first['change'])
 	
