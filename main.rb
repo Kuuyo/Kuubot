@@ -1120,9 +1120,10 @@ def perforce_discord_webhook
 	#  p4.errors.each { |e| puts( e ) }
 end
 
+bot.run
 secondly_loop {perforce_discord_webhook}
 
-bot.run
+
 
 
 
