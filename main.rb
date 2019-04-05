@@ -66,11 +66,11 @@ Timeloop.every 30.seconds do
 				$previousChange = latestChange
 			end
 		end
-	rescue P4Exception => msg
-	  puts( msg )
-	  p4.warnings.each { |w| puts( w ) }
-	  p4.errors.each { |e| puts( e ) }
-	end
+	#rescue P4Exception => msg
+	#  puts( msg )
+	#  p4.warnings.each { |w| puts( w ) }
+	#  p4.errors.each { |e| puts( e ) }
+	#end
 end
 
 
