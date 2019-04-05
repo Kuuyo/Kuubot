@@ -19,7 +19,7 @@ begin
 	p4.connect
 	p4.run_login
 
-	latestChange = p4.run_changes("t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
+	latestChange = p4.run_changes("-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 
 	puts(latestChange)
 
