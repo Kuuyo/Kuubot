@@ -19,7 +19,11 @@ p4.host = ENV['P4HOST']
 p4.connect
 p4.run_login
 
+Timeloop.every 10.seconds do
+  puts '10 seconds delay'
+end
 
+=begin
 Timeloop.every 30.seconds do
 	latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 	descriptionOfChange = p4.run_describe(latestChange.first['change'])
@@ -70,6 +74,7 @@ Timeloop.every 30.seconds do
 	#  p4.errors.each { |e| puts( e ) }
 
 end
+=end
 
 
 
