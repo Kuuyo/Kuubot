@@ -29,41 +29,40 @@ Timeloop.every 30.seconds do
 
 	client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
 
-		if latestChange != $previousChange
-			client.execute do |builder|
-				builder.content = 'Perforce change ' + latestChange.first['change']
-				builder.add_embed do |embed|
-					user = latestChange.first['user']
-						case user
-							when 'jlommaert'
-								icon = ENV['JLICON']
-							when 'zlazou'
-								icon = ENV['ZLICON']
-							when 'eannys'
-								icon = ENV['EAICON']
-							when 'rvandijk'
-								icon = ENV['RVICON']
-							when 'ehernes'
-								icon = ENV['EHICON']
-							else
-								icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
-						end
-					embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
-					embed.title = latestChange.first['desc']
-					embed.url = ENV['EMBEDURL']
-					embed.description = latestChange.first['path']
-					embed.timestamp = Time.now
-					embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
-					#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
-					embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
-					#embed.add_field(name: 'Files:', value: '')
-					descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
-					name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
-					value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
-				end
+	if latestChange != $previousChange
+		client.execute do |builder|
+			builder.content = 'Perforce change ' + latestChange.first['change']
+			builder.add_embed do |embed|
+				user = latestChange.first['user']
+					case user
+						when 'jlommaert'
+							icon = ENV['JLICON']
+						when 'zlazou'
+							icon = ENV['ZLICON']
+						when 'eannys'
+							icon = ENV['EAICON']
+						when 'rvandijk'
+							icon = ENV['RVICON']
+						when 'ehernes'
+							icon = ENV['EHICON']
+						else
+							icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
+					end
+				embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
+				embed.title = latestChange.first['desc']
+				embed.url = ENV['EMBEDURL']
+				embed.description = latestChange.first['path']
+				embed.timestamp = Time.now
+				embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
+				#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
+				embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
+				#embed.add_field(name: 'Files:', value: '')
+				descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
+				name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
+				value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
 			end
-			$previousChange = latestChange
 		end
+		$previousChange = latestChange
 	end
 	#rescue P4Exception => msg
 	#  puts( msg )
