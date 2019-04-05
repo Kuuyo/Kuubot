@@ -16,11 +16,12 @@ p4.user = ENV['P4USER']
 p4.client = ENV['P4CLIENT']
 p4.host = ENV['P4HOST']
 
-begin
-	p4.connect
-	p4.run_login
 
-	Timeloop.every 30.seconds do
+
+Timeloop.every 30.seconds do
+	begin
+		p4.connect
+		p4.run_login
 		latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 		descriptionOfChange = p4.run_describe(latestChange.first['change'])
 
@@ -65,13 +66,14 @@ begin
 				$previousChange = latestChange
 			end
 		end
-	end
-
-rescue P4Exception => msg
+	rescue P4Exception => msg
 	  puts( msg )
 	  p4.warnings.each { |w| puts( w ) }
 	  p4.errors.each { |e| puts( e ) }
+	end
 end
+
+
 
 
 bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
