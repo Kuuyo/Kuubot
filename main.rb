@@ -3,6 +3,7 @@ require 'discordrb'
 require 'discordrb/webhooks'
 require 'active_support/all'
 require 'open-uri'
+require 'timeloop'
 
 require 'P4'
 
@@ -19,7 +20,7 @@ begin
 	p4.connect
 	p4.run_login
 
-	loop do
+	Timeloop.every 30.seconds do
 		latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 		descriptionOfChange = p4.run_describe(latestChange.first['change'])
 
