@@ -3,45 +3,8 @@ require 'discordrb'
 require 'discordrb/webhooks'
 require 'active_support/all'
 require 'open-uri'
-require 'timeloop'
-
-# (c) lolmaus (Andrey Mikhaylov), 2014
-# MIT license http://choosealicense.com/licenses/mit/
-
-class Branch
-  def initialize(mutexes = 0, &block)
-    @threads = []
-    @mutexes = Hash.new { |hash, key| hash[key] = Mutex.new }
-
-    # Executing the passed block within the context
-    # of this class' instance.
-    instance_eval &block
-
-    # Waiting for all threads to finish
-    @threads.each { |thr| thr.join }
-  end
-
-  # This method will be available within a block
-  # passed to `Branch.new`.
-  def branch(delay = false, &block)
-
-    # Starting a new thread 
-    @threads << Thread.new do
-
-      # Implementing the timeout functionality
-      sleep delay if delay.is_a? Numeric
-
-      # Executing the block passed to `branch`,
-      # providing mutexes into the block.
-      block.call @mutexes
-    end
-  end
-end
-
-require 'P4'
 		
 bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
-
 
 bot.message(containing: Regexp.new(Regexp.escape("*Slaps Kuubot*"), Regexp::IGNORECASE)) do |event|
 	user = event.user.id
@@ -1034,98 +997,7 @@ bot.message() do |event|
 	end
 end
 
-
-
-puts('Hello')
-
-$previousChange = nil
-
-def secondly_loop
-    last = Time.now
-    while true
-        yield
-        now = Time.now
-        _next = [last + 30,now].max
-        sleep (_next-now)
-        last = _next
-    end
-end
-
-
-
-#Branch.new do
-#  branch{Timeloop.every 10.seconds do
-#		puts '10 seconds delay'
-#	end}
-#end
-
-
-def perforce_discord_webhook
-	p4 = P4.new
-	p4.password = ENV['P4PASSWORD']
-	p4.port = ENV['P4PORT']
-	p4.user = ENV['P4USER']
-	p4.client = ENV['P4CLIENT']
-	p4.host = ENV['P4HOST']
-	
-	p4.connect
-	p4.run_login
-
-	latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
-	descriptionOfChange = p4.run_describe(latestChange.first['change'])
-	
-	puts(latestChange)
-	puts(descriptionOfChange)
-	
-	client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
-	
-	if latestChange != $previousChange
-		client.execute do |builder|
-			builder.content = 'Perforce change ' + latestChange.first['change']
-			builder.add_embed do |embed|
-				user = latestChange.first['user']
-					case user
-						when 'jlommaert'
-							icon = ENV['JLICON']
-						when 'zlazou'
-							icon = ENV['ZLICON']
-						when 'eannys'
-							icon = ENV['EAICON']
-						when 'rvandijk'
-							icon = ENV['RVICON']
-						when 'ehernes'
-							icon = ENV['EHICON']
-						else
-							icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
-					end
-				embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
-				embed.title = latestChange.first['desc']
-				embed.url = ENV['EMBEDURL']
-				embed.description = latestChange.first['path']
-				embed.timestamp = Time.now
-				embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
-				#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
-				embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
-				#embed.add_field(name: 'Files:', value: '')
-				descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
-				name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
-				value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
-			end
-		end
-		$previousChange = latestChange
-	end
-	#rescue P4Exception => msg
-	#  puts( msg )
-	#  p4.warnings.each { |w| puts( w ) }
-	#  p4.errors.each { |e| puts( e ) }
-end
-
 bot.run
-secondly_loop {perforce_discord_webhook}
-
-
-
-
 
 =begin
 bot.message(containing: emotes) do |event|
