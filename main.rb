@@ -55,9 +55,9 @@ if latestChange != $previousChange
 			embed.title = latestChange.first['desc']
 			embed.description = latestChange.first['path']
 			embed.timestamp = Time.now
-			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
+			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
-			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
+			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
 			#embed.add_field(name: 'Files:', value: latestChange._files)
 		end
 	end
