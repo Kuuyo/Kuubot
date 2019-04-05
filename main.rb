@@ -52,15 +52,13 @@ if latestChange != $previousChange
 						icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
 				end
 			embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
-=begin
-			embed.title = latestChange._description
-			embed.description = 'Embed description'
-			embed.timestamp = latestChange._date
-			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Hello', icon_url: 'https://i.imgur.com/j69wMDu.jpg')
-			embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://i.imgur.com/PcMltU7.jpg')
+			embed.title = latestChange.first['desc']
+			embed.description = latestChange.first['path']
+			embed.timestamp = latestChange.first['time']
+			embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
+			#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
 			embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_1537996660/helix-core.png')
-			embed.add_field(name: 'Files:', value: latestChange._files)
-=end
+			#embed.add_field(name: 'Files:', value: latestChange._files)
 		end
 	end
 	$previousChange = latestChange
