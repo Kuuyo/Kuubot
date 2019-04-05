@@ -40,84 +40,13 @@ end
 
 require 'P4'
 
-$previousChange = nil
-
-p4 = P4.new
-p4.password = ENV['P4PASSWORD']
-p4.port = ENV['P4PORT']
-p4.user = ENV['P4USER']
-p4.client = ENV['P4CLIENT']
-p4.host = ENV['P4HOST']
-
-p4.connect
-p4.run_login
-
-Branch.new do
-	branch{
-		Timeloop.every 10.seconds do
-		  puts '10 seconds delay'
-		end
-	}
-
-
-	
-	
-=begin
-	Timeloop.every 30.seconds do
-		latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
-		descriptionOfChange = p4.run_describe(latestChange.first['change'])
-	
-		puts(latestChange)
-		puts(descriptionOfChange)
-	
-		client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
-	
-		if latestChange != $previousChange
-			client.execute do |builder|
-				builder.content = 'Perforce change ' + latestChange.first['change']
-				builder.add_embed do |embed|
-					user = latestChange.first['user']
-						case user
-							when 'jlommaert'
-								icon = ENV['JLICON']
-							when 'zlazou'
-								icon = ENV['ZLICON']
-							when 'eannys'
-								icon = ENV['EAICON']
-							when 'rvandijk'
-								icon = ENV['RVICON']
-							when 'ehernes'
-								icon = ENV['EHICON']
-							else
-								icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
-						end
-					embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
-					embed.title = latestChange.first['desc']
-					embed.url = ENV['EMBEDURL']
-					embed.description = latestChange.first['path']
-					embed.timestamp = Time.now
-					embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
-					#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
-					embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
-					#embed.add_field(name: 'Files:', value: '')
-					descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
-					name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
-					value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
-				end
-			end
-			$previousChange = latestChange
-		end
-		#rescue P4Exception => msg
-		#  puts( msg )
-		#  p4.warnings.each { |w| puts( w ) }
-		#  p4.errors.each { |e| puts( e ) }
-	
-	end
-=end
-	
-	
-	
-	
+#Branch.new do
+#	branch{
+#		
+#		
+#		
+#	}
+		
 	bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'], application_id: ENV['APPID'], prefix: "!"
 	
 	
@@ -707,23 +636,7 @@ Branch.new do
 	
 	bot.command :quotes, description:"Lists quotes list" do |event|
 		event.respond quotes.join(' | ')
-	end
-	
-=begin
-	bot.member_update do |event|
-		user = event.user.nick
-		if user.include? 'Kuuyo'
-			event.user.nick = 'Imposter'
-		elsif user.include? 'kuuyo'
-			event.user.nick = 'Imposter'
-		elsif user.include? 'kuu'
-			event.user.nick = 'Imposter'
-		elsif user.include? 'Kuu'
-			event.user.nick = 'Imposter'
-		end
-	end
-=end
-	
+	end	
 	
 	bot.command :slap, description:"Slaps" do |event|
 		#mention = event.message.mentions
@@ -1072,15 +985,6 @@ Branch.new do
 		string += FormatTimer("Battery condenser 2 starting in: ",time,timeCondenser2Start,time5.abs == timeArrMin)
 		string += FormatTimer("Battery condenser 2 ending in: ",time,timeCondenser2End,time6.abs == timeArrMin)
 		string += FormatTimer("Battery reset 2 in: ",time,batteryReset2,time7.abs == timeArrMin)
-=begin
-		string += "Battery condenser 1 starting in: " + ConvertSecondsToHMS(timeCondenser1Start - time) + "\n"
-		string += "Battery condenser 1 ending in: " + ConvertSecondsToHMS(timeCondenser1End - time) + "\n"
-		string += "Reset in: " + ConvertSecondsToHMS(reset - time) + "\n"
-		string += "Battery reset 1 in: " + ConvertSecondsToHMS(batteryReset1 - time) + "\n"
-		string += "Battery condenser 2 starting in: " + ConvertSecondsToHMS(timeCondenser2Start - time) + "\n"
-		string += "Battery condenser 2 ending in: " + ConvertSecondsToHMS(timeCondenser2End - time) + "\n"
-		string += "Battery reset 2 in: " + ConvertSecondsToHMS(batteryReset2 - time)
-=end
 		event.respond string
 	end
 	
@@ -1153,7 +1057,96 @@ Branch.new do
 	
 	bot.run
 
+#end
+
+$previousChange = nil
+
+p4 = P4.new
+p4.password = ENV['P4PASSWORD']
+p4.port = ENV['P4PORT']
+p4.user = ENV['P4USER']
+p4.client = ENV['P4CLIENT']
+p4.host = ENV['P4HOST']
+
+p4.connect
+p4.run_login
+
+Timeloop.every 10.seconds do
+  puts '10 seconds delay'
 end
+
+=begin
+	Timeloop.every 30.seconds do
+		latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
+		descriptionOfChange = p4.run_describe(latestChange.first['change'])
+	
+		puts(latestChange)
+		puts(descriptionOfChange)
+	
+		client = Discordrb::Webhooks::Client.new(url: ENV['WEBHOOK'])
+	
+		if latestChange != $previousChange
+			client.execute do |builder|
+				builder.content = 'Perforce change ' + latestChange.first['change']
+				builder.add_embed do |embed|
+					user = latestChange.first['user']
+						case user
+							when 'jlommaert'
+								icon = ENV['JLICON']
+							when 'zlazou'
+								icon = ENV['ZLICON']
+							when 'eannys'
+								icon = ENV['EAICON']
+							when 'rvandijk'
+								icon = ENV['RVICON']
+							when 'ehernes'
+								icon = ENV['EHICON']
+							else
+								icon = 'https://cdn.discordapp.com/embed/avatars/0.png'
+						end
+					embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: user, url: '', icon_url: icon)
+					embed.title = latestChange.first['desc']
+					embed.url = ENV['EMBEDURL']
+					embed.description = latestChange.first['path']
+					embed.timestamp = Time.now
+					embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Helix Core', icon_url: 'https://i.imgur.com/qixMjRV.png')
+					#embed.image = Discordrb::Webhooks::EmbedImage.new(url: '')
+					embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: 'https://i.imgur.com/qixMjRV.png')
+					#embed.add_field(name: 'Files:', value: '')
+					descriptionOfChange.first['depotFile'].each {|file| embed.add_field(
+					name: descriptionOfChange.first['action'].shift + ' ' + descriptionOfChange.first['type'].shift,
+					value: file + ' Rev: #' + descriptionOfChange.first['rev'].shift)}
+				end
+			end
+			$previousChange = latestChange
+		end
+		#rescue P4Exception => msg
+		#  puts( msg )
+		#  p4.warnings.each { |w| puts( w ) }
+		#  p4.errors.each { |e| puts( e ) }
+	
+	end
+=end
+
+
+
+
+
+
+=begin
+	bot.member_update do |event|
+		user = event.user.nick
+		if user.include? 'Kuuyo'
+			event.user.nick = 'Imposter'
+		elsif user.include? 'kuuyo'
+			event.user.nick = 'Imposter'
+		elsif user.include? 'kuu'
+			event.user.nick = 'Imposter'
+		elsif user.include? 'Kuu'
+			event.user.nick = 'Imposter'
+		end
+	end
+=end
 
 =begin
 
