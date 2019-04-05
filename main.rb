@@ -291,20 +291,6 @@ emotes = [
 	';zzz;'
 ]
 
-in
-bot.message(containing: emotes) do |event|
-	content = event.message.content
-	index = content.index(';')
-	emote = content[index+1..-1]
-	emote = emote.chop
-	user = event.user.username
-	contentReturn = content[0..index-1]
-	dir = 'D:/smileys/'+emote+'.png'
-	event.respond contentReturn
-	event.channel.send_file File.new(dir)
-end
-
-
 bot.message(containing: emotes) do |event|
 	content = event.message.content
 	index = content.index(';')
@@ -1131,6 +1117,20 @@ end
 
 
 
+
+=begin
+bot.message(containing: emotes) do |event|
+	content = event.message.content
+	index = content.index(';')
+	emote = content[index+1..-1]
+	emote = emote.chop
+	user = event.user.username
+	contentReturn = content[0..index-1]
+	dir = 'D:/smileys/'+emote+'.png'
+	event.respond contentReturn
+	event.channel.send_file File.new(dir)
+end
+=end
 
 =begin
 	bot.member_update do |event|
