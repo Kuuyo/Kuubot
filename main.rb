@@ -1036,6 +1036,8 @@ end
 
 bot.run
 
+puts('Hello')
+
 $previousChange = nil
 
 p4 = P4.new
