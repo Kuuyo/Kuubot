@@ -16,11 +16,11 @@ p4.user = ENV['P4USER']
 p4.client = ENV['P4CLIENT']
 p4.host = ENV['P4HOST']
 
+p4.connect
+p4.run_login
 
 
 Timeloop.every 30.seconds do
-	p4.connect
-	p4.run_login
 	latestChange = p4.run_changes("-l", "-t", "-m", "1", "-s", "submitted", "//gamep_group06/...")
 	descriptionOfChange = p4.run_describe(latestChange.first['change'])
 
