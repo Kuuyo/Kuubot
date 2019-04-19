@@ -721,7 +721,7 @@ availableRoles = [
 	'thor',
 	'gflping',
 	'shiba',
-	'chuunibyou',
+	'guriiiiiiiiiiiiiiiiiiiimuniru',
 	'europa is super cute',
 	'alexiel',
 	'megatron',
@@ -729,7 +729,9 @@ availableRoles = [
 	'18man',
 	'akasha',
 	'primarch',
-	'tiamalice'
+	'tiamalice',
+	'mika',
+	'faa'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,*input|
