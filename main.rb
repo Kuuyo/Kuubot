@@ -731,7 +731,8 @@ availableRoles = [
 	'primarch',
 	'tiamalice',
 	'mika',
-	'faa'
+	'faa',
+	'faahl'
 ]
 
 bot.command :addrole, description:"Adds a role" do |event,*input|
